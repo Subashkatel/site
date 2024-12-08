@@ -326,22 +326,6 @@ input[type='email'] {
   #right {
     margin-top: 1rem;
   }
-  
-  .rows,
-  .row,
-  .pub,
-  .title,
-  .authors {
-    text-align: left !important;
-  }
-  
-  p {
-    text-align: left;  /* Override justify alignment on mobile */
-  }
-  
-  .pub {
-    padding: 0.5rem;  /* Add some padding for better mobile readability */
-  }
 }
 
 @media print {
