@@ -18,10 +18,14 @@
 html {
   min-width: 360px;
   scrollbar-gutter: stable;
+  font-family: var(--font-family-sans);
 }
 
 body {
   text-rendering: optimizeLegibility;
+  font-family: var(--font-family-sans);
+  color: #333;
+  margin: 0;
 }
 
 h1,
@@ -29,6 +33,98 @@ h2,
 h3,
 h4 {
   text-wrap: balance;
+  margin: 0 0 0.5rem -0.1rem;
+  line-height: 1;
+  color: #111;
+  text-rendering: optimizeLegibility;
+  font-weight: 800;  /* increased from bold to 800 */
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin: 0 0 0.5rem -0.1rem;  /* reduced from 1rem to 0.5rem */
+  line-height: 1.2;
+}
+
+@media (min-width: 30rem) {
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 1rem;  /* reduced from 3rem to 1rem */
+  }
+}
+
+h2 {
+  margin-top: 2rem;
+  font-size: 1.25rem;
+  margin-bottom: 0.75rem;
+  font-weight: 800;  /* explicitly set weight */
+}
+
+@media (min-width: 30rem) {
+  h2 {
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+}
+
+h2:first-child {
+  margin-top: 2rem;
+}
+
+h3, h4, h5, h6 {
+  margin-top: 1.5rem;
+  font-size: 1rem;
+}
+
+p, ul, ol, dl, table, pre, blockquote {
+  margin-top: 0;
+  margin-bottom: 1rem;
+}
+
+ul, ol {
+  padding-left: 1.5rem;
+}
+
+dd {
+  margin-left: 1.5rem;
+}
+
+blockquote {
+  margin-left: 0;
+  margin-right: 0;
+  padding: .5rem 1rem;
+  border-left: .25rem solid #ccc;
+  color: #666;
+}
+
+blockquote p:last-child {
+  margin-bottom: 0;
+}
+
+hr {
+  color: var(--color-gray-200);
+  border: none;
+  margin: 1.5rem 0;
+  border-bottom: 1px solid #ccc;
+  position: relative;
+  top: -1px;
+}
+
+.container img, .container iframe {
+  max-width: 100%;
+}
+
+.container img {
+  margin: 0 auto;
+  display: block;
+}
+
+table {
+  display: block;
+  max-width: fit-content;
+  overflow-x: auto;
+  white-space: nowrap;
 }
 
 pre {
@@ -78,11 +174,6 @@ pre code span {
   font-weight: 500;
 }
 
-hr {
-  color: var(--color-gray-200);
-}
-
-/* Remove Safari input shadow on mobile */
 input[type='text'],
 input[type='email'] {
   -webkit-appearance: none;
@@ -90,23 +181,15 @@ input[type='email'] {
   appearance: none;
 }
 
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
 .transition-element {
-  view-transition-name: lee;
+  margin: 0;
+  padding: 0;
 }
 
-::view-transition-old(lee) {
-  animation: fade-out 0.8s ease-in-out;
-}
-
-::view-transition-new(lee) {
-  animation: fade-in-up 0.4s ease-in-out;
+.group:hover .group-hover\:-translate-y-full,
+.group:hover .group-hover\:translate-y-0 {
+  transform: none;
+  transition: none;
 }
 
 @keyframes fade-out {
@@ -182,4 +265,139 @@ table {
     animation: fade-in 0.8s ease-in-out forwards;
     opacity: 0;
   }
+}
+
+#wrapper {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+#left, #right {
+  display: inline-block;
+  vertical-align: top;
+  text-align: left;
+}
+
+#left {
+  width: 14rem;
+  flex-shrink: 0;
+  padding-bottom: 2rem;
+  padding-right: 5rem;
+}
+
+#left p {
+  text-align: left;
+  margin-bottom: 0.5rem;
+  line-height: 1.4;
+}
+
+#right {
+  width: 37.215rem;
+  margin-top: -2rem; /* to compensate for h2 */
+}
+
+@media (max-width: 768px) {
+  #wrapper {
+    flex-direction: column;
+    padding: 2rem 1rem;
+    gap: 2rem;
+  }
+  
+  #left, #right {
+    width: 100%;
+    padding-right: 0;
+  }
+  
+  #left {
+    position: static;
+    padding: 0 1rem;
+  }
+  
+  #left .relative {
+    margin: 0; /* Remove auto margins */
+    width: 160px; /* Fixed width */
+    height: 200px !important; /* Fixed height */
+  }
+  
+  #right {
+    margin-top: 1rem;
+  }
+}
+
+@media print {
+  html {
+    font-family: georgia, serif;
+    font-size: 14px;
+  }
+}
+
+p {
+  text-align: justify;
+}
+
+/* Publication styles */
+.rows {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.row {
+  display: flex;
+  border-radius: 4px;
+  border-top: 1px solid #3193cc;
+  border-left: 10px solid #3193cc;
+  border-bottom: 1px solid #3193cc;
+  border-right: 1px solid #3193cc;
+  background-color: #fbfeff;
+  padding: 0.4rem;
+}
+
+.pub {
+  margin: 0;
+  padding: 0;
+  line-height: 1.2;
+}
+
+.title {
+  font-weight: bold;
+  font-size: 1rem;
+}
+
+.authors {
+  font-size: 0.95rem;
+}
+
+.distinguished {
+  font-weight: bold;
+  color: green;
+  font-size: 0.9rem;
+}
+
+a:link {
+  color: #276fa0;
+}
+
+a:visited {
+  color: #834fbb;
+}
+
+/* Center layout for non-home pages */
+.max-w-2xl {
+  width: 100%;
+  max-width: 42rem;
+}
+
+.mx-auto {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* Adjust heading margins for centered layout */
+.max-w-2xl h1 {
+  margin-bottom: 2rem;
 }

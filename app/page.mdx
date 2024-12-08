@@ -1,23 +1,47 @@
-import { NameTransition } from './name';
+import { NameTransition } from './name'
+import { Publications } from './components/Publications'
+import { publications } from './data/publications'
 
-<NameTransition />
+<div id="wrapper">
+  <div id="left" className="container">
+    <div className="flex flex-col">
+      <NameTransition />
+      <p>Computer Science Student at UCSD</p>
+      <p><em>Compilers | Machine Learning | Heterogeneous Systems</em></p>
+      <p><a href="mailto:your@ucsd.edu">skatel@ucsd.edu</a></p>
+      <p><a href="https://github.com/subashkatel">github</a></p>
+      <p><a href="/work">Work</a></p>
+      <p><a href="/publications">Publications</a></p>
+      <p><a href="https://linkedin.com/in/your-linkedin">LinkedIn</a></p>
+    </div>
+  </div>
+  
+  <div id="right" className="container">
+    ## About me
 
-I'm a frontend developer, optimist, and community builder. I work at [Vercel](/work), where I teach the [Next.js](/n/stack) community, an open-source web framework built with React.
+    I am a final-year Computer Science student at UCSD. Currently, I am applying to graduate school to explore my passion for compilers, machine learning, and heterogeneous systems.
 
-## Writing
+    ## My Research
 
-- [On Developer Experience](/n/dx)
-- [On Developer Marketing](/n/developer-marketing)
-- [On Developer Relations](/n/devrel)
-- [On Developer Products](/n/devtools)
-- [On Community Moderation](/n/moderation)
-- [Rust is Eating JavaScript](/n/rust)
-- [Product Engineers](/n/product-engineers)
-- [My Stack](/n/stack)
-- [Understanding AI](/n/ai)
+    My research interests lies on leveraging compilers and machine learning techniques to optimize heterogeneous systems for high-performance computing environments. II have had the chance to contribute to building compiler tools and techniques that bridge the gap between high-level machine learning models and hardware-specific optimizations.
 
-## Code
+    In addition to my work in computer science, I have had chance to contribute in high-energy physics, applying self-supervised learning methods to analyze particle jet data. My physics research, under the mentorship of Prof. Javier Duarte, led to the development of the Jet-based Joint Embedding Predictive Architecture (J-JEPA), a framework for learning augmentation-independent representations of jets. Still in the works 😉
 
-- [next-saas-starter](https://github.com/leerob/next-saas-starter)
-- [next-email-client](https://github.com/leerob/next-email-client)
-- [next-music-player](https://github.com/leerob/next-music-player)
+    ## Selected Publications
+
+    <Publications publications={publications} />
+
+    For more details, see [my publication list](publications.html) and [my Google Scholar](https://scholar.google.com/citations?user=beiWcokAAAAJ).
+
+    ## Writing
+
+    - [Compilers](/n/alignment)
+    - [Applications](/n/ml)
+
+    ## Code
+
+    - [compilers](https://github.com/subashkatel)
+    - [ml-tools](https://github.com/subashkatel)
+    - [framework](https://github.com/subashkatel)
+  </div>
+</div>

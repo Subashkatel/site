@@ -1,21 +1,19 @@
 import './globals.css';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
 import { ViewTransitions } from 'next-view-transitions';
 import { Analytics } from '@vercel/analytics/react';
-
-const inter = Inter({ subsets: ['latin'] });
+import { NameTransition } from './name';
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://leerob.com'),
+  metadataBase: new URL('https://subashkatel.com'),
   alternates: {
     canonical: '/',
   },
   title: {
-    default: 'Lee Robinson',
-    template: '%s | Lee Robinson',
+    default: 'Subash Katel',
+    template: '%s | Subash Katel',
   },
-  description: 'Frontend developer, optimist, community builder.',
+  description: 'Computer Science at UCSD',
 };
 
 export default function RootLayout({
@@ -25,15 +23,13 @@ export default function RootLayout({
 }>) {
   return (
     <ViewTransitions>
-      <html lang="en" className={`${inter.className}`}>
+      <html lang="en">
         <body className="antialiased tracking-tight">
-          <div className="min-h-screen flex flex-col justify-between pt-0 md:pt-8 p-8 bg-white text-gray-900">
-            <main className="max-w-[60ch] mx-auto w-full space-y-6">
-              {children}
-            </main>
+          <div className="min-h-screen bg-white text-gray-900">
+            {children}
             <Footer />
-            <Analytics />
           </div>
+          <Analytics />
         </body>
       </html>
     </ViewTransitions>
@@ -42,10 +38,8 @@ export default function RootLayout({
 
 function Footer() {
   const links = [
-    { name: '@leerob', url: 'https://x.com/leeerob' },
-    { name: 'youtube', url: 'https://www.youtube.com/@leerob' },
-    { name: 'linkedin', url: 'https://www.linkedin.com/in/leeerob' },
-    { name: 'github', url: 'https://github.com/leerob' },
+    { name: 'GitHub', url: 'https://github.com/subashkatel' },
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/subashkatel' },
   ];
 
   return (
