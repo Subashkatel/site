@@ -326,6 +326,22 @@ input[type='email'] {
   #right {
     margin-top: 1rem;
   }
+  
+  .rows,
+  .row,
+  .pub,
+  .title,
+  .authors {
+    text-align: left !important;
+  }
+  
+  p {
+    text-align: left;  /* Override justify alignment on mobile */
+  }
+  
+  .pub {
+    padding: 0.5rem;  /* Add some padding for better mobile readability */
+  }
 }
 
 @media print {
@@ -344,6 +360,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  text-align: left;  /* Add this */
 }
 
 .row {
@@ -355,12 +372,14 @@ p {
   border-right: 1px solid #3193cc;
   background-color: #fbfeff;
   padding: 0.4rem;
+  text-align: left;  /* Add this */
 }
 
 .pub {
   margin: 0;
   padding: 0;
   line-height: 1.2;
+  text-align: left;  /* Add this */
 }
 
 .title {
