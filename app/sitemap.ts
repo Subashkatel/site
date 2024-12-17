@@ -17,12 +17,12 @@ export default async function sitemap() {
   const slugs = await getNoteSlugs(notesDirectory);
 
   const notes = slugs.map((slug) => ({
-    url: `https://your-domain.com/n/${slug}`,
+    url: `https://subashkatel.com/n/${slug}`,
     lastModified: new Date().toISOString(),
   }));
 
   const routes = ['', '/work'].map((route) => ({
-    url: `https://your-domain.com${route}`,
+    url: `https://subashkatel.com${route}`,
     lastModified: new Date().toISOString(),
   }));
 

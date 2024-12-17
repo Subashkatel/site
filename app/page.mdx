@@ -1,47 +1,44 @@
 import { NameTransition } from './name'
 import { Publications } from './components/Publications'
 import { publications } from './data/publications'
+import Link from 'next/link'
 
 <div id="wrapper">
   <div id="left" className="container">
     <div className="flex flex-col">
       <NameTransition />
       <p>Computer Science Student at UCSD</p>
-      <p><em>Compilers | Machine Learning | Heterogeneous Systems</em></p>
+      <p><em>Compilers | ML for Systems </em></p>
       <p><a href="mailto:your@ucsd.edu">skatel@ucsd.edu</a></p>
       <p><a href="https://github.com/subashkatel">github</a></p>
-      <p><a href="/work">Work</a></p>
-      <p><a href="/publications">Publications</a></p>
-      <p><a href="https://linkedin.com/in/your-linkedin">LinkedIn</a></p>
+      <p><a href="/cv/subash_cv.pdf">CV</a></p>
     </div>
   </div>
   
   <div id="right" className="container">
     ## About me
 
-    I am a final-year Computer Science student at UCSD. Currently, I am applying to graduate school to explore my passion for compilers, machine learning, and heterogeneous systems.
+    I'm a 4th year undergrad in Computer Science at UC San Diego. During my time here, I have been fortunate enough to work with great mentors - [Hadi Esmaeilzadeh](https://cseweb.ucsd.edu/~hadi/), [Ryan Kastner](https://kastner.ucsd.edu/ryan/), and [Javier Duarte](https://jduarte.physics.ucsd.edu/) - who have shaped my research direction.
+    
+    <strong>I am currently applying to PhD programs for Fall 2025</strong>
 
     ## My Research
 
-    My research interests lies on leveraging compilers and machine learning techniques to optimize heterogeneous systems for high-performance computing environments. II have had the chance to contribute to building compiler tools and techniques that bridge the gap between high-level machine learning models and hardware-specific optimizations.
+    My research focuses on a key question: 
+    
+    *How can we make systems more efficient in an era of increasingly complex hardware architectures?*
 
-    In addition to my work in computer science, I have had chance to contribute in high-energy physics, applying self-supervised learning methods to analyze particle jet data. My physics research, under the mentorship of Prof. Javier Duarte, led to the development of the Jet-based Joint Embedding Predictive Architecture (J-JEPA), a framework for learning augmentation-independent representations of jets. Still in the works 😉
-
+    I'm currently working with Professor [Vijay Janapa Reddi](https://edge.seas.harvard.edu/team) on developing frameworks to evaluate AI-driven hardware design - an emerging field that's growing rapidly. I'm also building a transpiler to help run PyTorch models on specialized hardware. I’m also working with Professor Duarte's lab, where we are working toward a foundation model for high energy physics.
     ## Selected Publications
 
     <Publications publications={publications} />
 
-    For more details, see [my publication list](publications.html) and [my Google Scholar](https://scholar.google.com/citations?user=beiWcokAAAAJ).
+    For more details, see [my publication list](publications.html) and [my Google Scholar](https://scholar.google.com/citations?user=b4fybOsAAAAJ&hl).
 
     ## Writing
 
     - [Compilers](/n/alignment)
     - [Applications](/n/ml)
 
-    ## Code
-
-    - [compilers](https://github.com/subashkatel)
-    - [ml-tools](https://github.com/subashkatel)
-    - [framework](https://github.com/subashkatel)
   </div>
 </div>
