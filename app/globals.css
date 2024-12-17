@@ -344,7 +344,7 @@ p {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
-  text-align: left;  /* Add this */
+  text-align: left;  
 }
 
 .row {
@@ -356,14 +356,14 @@ p {
   border-right: 1px solid #3193cc;
   background-color: #fbfeff;
   padding: 0.4rem;
-  text-align: left;  /* Add this */
+  text-align: left;  
 }
 
 .pub {
   margin: 0;
   padding: 0;
   line-height: 1.2;
-  text-align: left;  /* Add this */
+  text-align: left;  
 }
 
 .title {
