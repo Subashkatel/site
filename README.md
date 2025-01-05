@@ -18,6 +18,8 @@ cd site
 bun install
 bun run delete # Remove all of my notes
 bun dev
+or
+npm run dev
 ```
 
 Optional: Create a `.env.local` file with your `POSTGRES_URL` environment variable to store redirects.
