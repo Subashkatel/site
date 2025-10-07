@@ -1,0 +1,21 @@
+import { Publications } from '../components/Publications'
+import { publications } from '../data/publications'
+import Link from 'next/link'
+
+export const metadata = {
+  title: 'Publications',
+  description: 'Research publications by Subash Katel',
+  alternates: {
+    canonical: '/publications',
+  },
+}
+
+<div className="max-w-3xl mx-auto px-6 py-12">
+  # Publications
+
+  <Publications publications={publications} />
+
+  <div className="mt-8">
+    <Link href="/" className="text-blue-500 hover:text-blue-600">← Back to home</Link>
+  </div>
+</div>

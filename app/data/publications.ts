@@ -5,6 +5,7 @@ export interface Publication {
   year: number;
   url: string;
   distinguished?: boolean;
+  image?: string;
 }
 
 export const publications: Publication[] = [
@@ -13,20 +14,15 @@ export const publications: Publication[] = [
     authors: ["Subash Katel", "Haoyang Li", "Zihan Zhao", "Javier Duarte"],
     venue: "ML4Jets Workshop & NeurIPS Workshop on Machine Learning for Physical Sciences",
     year: 2024,
-    url: "#",
+    url: "https://arxiv.org/abs/2412.05333",
+    image: "/images/jepa.png",
   },
   {
     title: "Reducing the Carbon Footprint of EdTech with Repurposed Devices",
     authors: ["J. Switzer", "S. Katel", "J. C. Lee", "A. R. A. Rajan", "R. Kastner", "P. Pannuto"],
     venue: "MICRO IGSCC Workshop",
     year: 2024,
-    url: "#"
+    url: "https://ieeexplore.ieee.org/abstract/document/10765841",
+    image: "/images/carbon_foot.png",
   },
-//   {
-//     title: "Your Publication Title",
-//     authors: ["Subash Katel", "Other Authors"],
-//     venue: "Conference/Journal Name",
-//     year: 2024,
-//     url: "#"
-//   },
 ];

@@ -1,11 +1,12 @@
 import { Publication } from '../data/publications';
+import Image from 'next/image';
 
 export function Publications({ publications }: { publications: Publication[] }) {
   return (
     <div className='rows'>
       {publications.map((pub, i) => (
-        <div key={i} className='row'>
-          <p className='pub'>
+        <div key={i} className='row' style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
+          <p className='pub' style={{ flex: 1 }}>
             {pub.distinguished && (
               <span className="distinguished">
                 (Distinguished Paper)<br />
@@ -21,6 +22,23 @@ export function Publications({ publications }: { publications: Publication[] }) 
             <br />
             <a href={pub.url}>[paper]</a>
           </p>
+          {pub.image && (
+            <div style={{ 
+              flexShrink: 0, 
+              width: '120px', 
+              height: '120px',
+              position: 'relative',
+              overflow: 'hidden',
+              borderRadius: '8px'
+            }}>
+              <Image
+                src={pub.image}
+                alt={pub.title}
+                fill
+                style={{ objectFit: 'cover' }}
+              />
+            </div>
+          )}
         </div>
       ))}
     </div>

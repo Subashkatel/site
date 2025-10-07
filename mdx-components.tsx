@@ -14,7 +14,7 @@ const components = {
     <h1 className="font-medium pt-12 mb-0 fade-in" {...props} />
   ),
   h2: (props: HeadingProps) => (
-    <h2 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
+    <h2 className="font-medium" {...props} />
   ),
   h3: (props: HeadingProps) => (
     <h3 className="text-gray-800 font-medium mt-8 mb-3" {...props} />
@@ -50,6 +50,14 @@ const components = {
         <a href={href} className={className} {...props}>
           {children}
         </a>
+      );
+    }
+    // Check if it's an internal relative link (doesn't start with http:// or https://)
+    if (href && !href.startsWith('http://') && !href.startsWith('https://')) {
+      return (
+        <Link href={href} className={className} {...props}>
+          {children}
+        </Link>
       );
     }
     return (

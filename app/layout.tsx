@@ -13,7 +13,7 @@ export const metadata: Metadata = {
     default: 'Subash Katel',
     template: '%s | Subash Katel',
   },
-  description: 'Computer Science at UCSD',
+  description: 'PhD Student in Computer Science at Princeton University',
 };
 
 export default function RootLayout({
