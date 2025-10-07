@@ -36,9 +36,9 @@ export default function RootLayout({
 
 function Footer() {
   const links = [
-    { name: 'GitHub', url: 'https://github.com/subashkatel' },
-    { name: 'LinkedIn', url: 'https://linkedin.com/in/subashkatel' },
-    { name: 'Credits', url: '/credits' },
+    { name: 'GitHub', url: 'https://github.com/subashkatel', external: true },
+    { name: 'LinkedIn', url: 'https://linkedin.com/in/subashkatel', external: true },
+    { name: 'Credits', url: '/credits', external: false },
   ];
 
   return (
@@ -48,8 +48,7 @@ function Footer() {
           <a
             key={link.name}
             href={link.url}
-            target="_blank"
-            rel="noopener noreferrer"
+            {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
             className="text-gray-400 hover:text-blue-500 transition-colors duration-200"
           >
             {link.name}
