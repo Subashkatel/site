@@ -16,7 +16,6 @@
     "framer-motion": "^11.13.1",
     "katex": "^0.16.23",
     "next": "^15.0.3",
-    "next-view-transitions": "^0.3.4",
     "postgres": "^3.4.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",

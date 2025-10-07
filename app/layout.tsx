@@ -1,7 +1,6 @@
 import './globals.css';
 import 'katex/dist/katex.min.css';
 import type { Metadata } from 'next';
-import { ViewTransitions } from 'next-view-transitions';
 import { Analytics } from '@vercel/analytics/react';
 import { NameTransition } from './name';
 
@@ -23,17 +22,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <ViewTransitions>
-      <html lang="en">
-        <body className="antialiased tracking-tight">
-          <div className="min-h-screen bg-white text-gray-900">
-            {children}
-            <Footer />
-          </div>
-          <Analytics />
-        </body>
-      </html>
-    </ViewTransitions>
+    <html lang="en">
+      <body className="antialiased tracking-tight">
+        <div className="min-h-screen bg-white text-gray-900">
+          {children}
+          <Footer />
+        </div>
+        <Analytics />
+      </body>
+    </html>
   );
 }
 
