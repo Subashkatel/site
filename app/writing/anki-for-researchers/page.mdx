@@ -1,0 +1,107 @@
+import Link from 'next/link'
+
+export const metadata = {
+  title: 'Anki for Researchers: Building a Long-Term Knowledge System',
+  description: 'How I use spaced repetition to retain complex research concepts',
+  date: '2025-01-15',
+}
+
+<div id="wrapper">
+  <div id="left" className="container">
+    <div className="flex flex-col">
+      <p><Link href="/">← Back to home</Link></p>
+      <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+        January 15, 2025
+      </p>
+    </div>
+  </div>
+  
+  <div id="right" className="container">
+    # Anki for Researchers: Building a Long-Term Knowledge System
+
+    *How I use spaced repetition to retain complex research concepts and build deep understanding over time.*
+
+    ## The Problem
+
+    As a PhD student, I read dozens of papers every month. The problem? Within weeks, I'd forget most of what I learned. Even important concepts would fade unless I was actively working on them.
+
+    This is where Anki changed everything.
+
+    ## What is Anki?
+
+    [Anki](https://apps.ankiweb.net/) is a spaced repetition system (SRS) - a flashcard app that uses an algorithm to show you cards right before you're about to forget them. It's based on decades of cognitive science research about how memory works.
+
+    ## My System
+
+    Here's how I use Anki for research:
+
+    ### 1. Paper Reading Cards
+
+    When I read a paper, I create cards for:
+    - **Key contributions**: What's the main idea?
+    - **Technical details**: How does the proposed method work?
+    - **Results**: What were the key findings and metrics?
+    - **Connections**: How does this relate to other work?
+
+    Example card:
+    ```
+    Q: What is the main contribution of "Attention Is All You Need"?
+    A: Introduced the Transformer architecture, which relies entirely on 
+    attention mechanisms without recurrence or convolution, achieving 
+    state-of-the-art results on translation tasks.
+    ```
+
+    ### 2. Concept Cards
+
+    For fundamental concepts I need to deeply understand:
+    ```
+    Q: Explain quantum entanglement in simple terms
+    A: When two particles become entangled, measuring one instantly 
+    affects the other, regardless of distance. The particles share a 
+    quantum state until measured.
+    ```
+
+    ### 3. Code Snippets
+
+    For implementation details I want to remember:
+    ```
+    Q: How to implement attention mechanism in PyTorch?
+    A: [code snippet with key attention formula]
+    ```
+
+    ## Best Practices
+
+    **1. Keep cards atomic** - One concept per card. Don't try to cram too much information.
+
+    **2. Write your own cards** - The act of formulating questions helps you understand. Don't just copy from papers.
+
+    **3. Be consistent** - Review daily. Takes 10-15 minutes for me.
+
+    **4. Connect to context** - Add tags, link related cards, include paper citations.
+
+    ## Results
+
+    After 6 months of consistent use:
+    - Retained key concepts from 50+ papers
+    - Built intuition for quantum computing fundamentals
+    - Can recall important results and methods quickly during discussions
+    - Reduced "relearning time" when returning to topics
+
+    ## Tools & Resources
+
+    - [Anki](https://apps.ankiweb.net/) - The main app (free, open source)
+    - [AnkiWeb](https://ankiweb.net/) - Sync across devices
+    - [Image Occlusion](https://github.com/glutanimate/image-occlusion-enhanced) - For diagram-based learning
+
+    ## Conclusion
+
+    Anki isn't magic - it requires consistency and thoughtful card creation. But for researchers who need to retain large amounts of information across diverse topics, it's invaluable.
+
+    The key insight: **Long-term memory is essential for deep understanding**. You can't make novel connections if you've forgotten the fundamentals.
+
+    ---
+
+    *Have questions about my Anki workflow? Feel free to reach out at [skatel@princeton.edu](mailto:skatel@princeton.edu)*
+
+  </div>
+</div>

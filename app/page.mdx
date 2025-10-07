@@ -1,17 +1,27 @@
 import { NameTransition } from './name'
 import { Publications } from './components/Publications'
 import { publications } from './data/publications'
+import { BlogCard } from './components/BlogCard'
 import Link from 'next/link'
+
+export const showPicture = false
 
 <div id="wrapper">
   <div id="left" className="container">
     <div className="flex flex-col">
-      <NameTransition />
+      <NameTransition showPicture={showPicture} />
       <p>PhD Student at Princeton University</p>
       <p><em>Classical / Quantum Architecture </em></p>
       <p><a href="mailto:skatel@princeton.edu">skatel@princeton.edu</a></p>
       <p><a href="https://github.com/subashkatel">github</a></p>
       <p><a href="/cv/subash_cv.pdf">CV</a></p>
+      
+      <div style={{ marginTop: '2rem' }}>
+        <h3 style={{ fontSize: '1.1rem', fontWeight: '600', marginBottom: '0.5rem' }}>Resources</h3>
+        <p style={{ fontSize: '0.9rem', lineHeight: '1.6' }}>
+          <a href="resources">Useful tools & links</a>
+        </p>
+      </div>
     </div>
   </div>
   
@@ -20,21 +30,51 @@ import Link from 'next/link'
 
     I'm a PhD student in Computer Science at Princeton University, where I work with Professor [Margaret Martonosi](https://www.cs.princeton.edu/~mrm/) on computer architecture and quantum architecture. Prior to Princeton, I completed my undergraduate degree at UC San Diego, where I worked on projects spanning ML systems, compiler design, and sustainability research.
 
+    <div style={{ marginTop: '2.5rem' }}></div>
+
     ## Research Interests
 
     I'm interested in the intersection of classical and quantum architecture, in particular:
 
     - Efficient simulation of quantum systems
     - Machine learning for quantum and classical applications
+
+    <div style={{ marginTop: '2.5rem' }}></div>
+
     ## Selected Publications
 
     <Publications publications={publications} />
 
     For more details, see [my publication list](publications) and [my Google Scholar](https://scholar.google.com/citations?user=b4fybOsAAAAJ&hl).
 
+    <div style={{ marginTop: '2.5rem' }}></div>
+
     ## Writing
 
-    - <a href="https://subashkatel.com" target="_self">Soon...</a>
-  
+    I write about my research, learning journey, and tools I find useful.
+
+    <div className="writing-cards">
+      <BlogCard 
+        title="Anki for Researchers"
+        description="How I use spaced repetition to retain complex concepts"
+        href="writing/anki-for-researchers"
+      />
+      
+      <BlogCard 
+        title="Paper Review: Quantum Architecture"
+        description="Deep dive into recent quantum architecture research"
+      />
+      
+      <BlogCard 
+        title="My Princeton Journey"
+        description="Reflections on transitioning from undergrad to PhD"
+      />
+      
+      <BlogCard 
+        title="Learning Systems"
+        description="Building effective knowledge management workflows"
+      />
+    </div>
+
   </div>
 </div>

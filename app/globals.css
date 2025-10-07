@@ -410,3 +410,58 @@ a:visited {
 .max-w-2xl h1 {
   margin-bottom: 2rem;
 }
+
+/* Writing cards */
+.writing-cards {
+  margin-top: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.writing-card {
+  display: block;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  text-decoration: none;
+  color: inherit;
+  background-color: white;
+  transition: all 0.2s ease;
+}
+
+.writing-card.active:hover {
+  border-color: #3193cc;
+  box-shadow: 0 2px 8px rgba(49, 147, 204, 0.15);
+}
+
+.writing-card.upcoming {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.writing-card .card-title {
+  font-weight: 600;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+  color: #333 !important;
+}
+
+.writing-card .card-description {
+  font-size: 0.95rem;
+  color: #666 !important;
+  line-height: 1.5;
+  margin-bottom: 0.5rem;
+}
+
+.writing-card .card-link {
+  font-size: 0.9rem;
+  color: #3193cc !important;
+  font-weight: 500;
+}
+
+.writing-card .card-coming-soon {
+  font-size: 0.85rem;
+  color: #999 !important;
+  font-style: italic;
+}

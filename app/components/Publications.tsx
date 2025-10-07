@@ -25,8 +25,8 @@ export function Publications({ publications }: { publications: Publication[] }) 
           {pub.image && (
             <div style={{ 
               flexShrink: 0, 
-              width: '120px', 
-              height: '120px',
+              width: '100px', 
+              height: '100px',
               position: 'relative',
               overflow: 'hidden',
               borderRadius: '8px'
