@@ -1,30 +1,24 @@
-import { promises as fs } from 'fs';
-import path from 'path';
-
-async function getNoteSlugs(dir: string) {
-  const entries = await fs.readdir(dir, { withFileTypes: true });
-  return entries
-    .filter((entry) => entry.isFile() && entry.name === 'page.mdx')
-    .map((entry) => {
-      const relativePath = path.relative(dir, path.join(dir, entry.name));
-      return path.dirname(relativePath);
-    })
-    .map((slug) => slug.replace(/\\/g, '/'));
-}
-
 export default async function sitemap() {
-  const notesDirectory = path.join(process.cwd(), 'app', 'n');
-  const slugs = await getNoteSlugs(notesDirectory);
-
-  const notes = slugs.map((slug) => ({
-    url: `https://subashkatel.com/n/${slug}`,
-    lastModified: new Date().toISOString(),
-  }));
-
-  const routes = ['', '/work'].map((route) => ({
+  const routes = [
+    '',
+    '/writing',
+    '/publications',
+    '/resources',
+    '/credits',
+  ].map((route) => ({
     url: `https://subashkatel.com${route}`,
     lastModified: new Date().toISOString(),
   }));
 
-  return [...routes, ...notes];
+  // Add blog posts
+  const blogPosts = [
+    '/writing/anki-for-researchers',
+    '/writing/quantum-entanglement-bell-states',
+    '/writing/gradient-descent-deep-dive',
+  ].map((route) => ({
+    url: `https://subashkatel.com${route}`,
+    lastModified: new Date().toISOString(),
+  }));
+
+  return [...routes, ...blogPosts];
 }

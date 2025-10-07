@@ -1,10 +1,19 @@
 import { Publication } from '../data/publications';
 import Image from 'next/image';
 
-export function Publications({ publications }: { publications: Publication[] }) {
+interface PublicationsProps {
+  publications: Publication[];
+  showOnlyFeatured?: boolean;
+}
+
+export function Publications({ publications, showOnlyFeatured = false }: PublicationsProps) {
+  const filteredPubs = showOnlyFeatured 
+    ? publications.filter(pub => pub.featured)
+    : publications;
+
   return (
     <div className='rows'>
-      {publications.map((pub, i) => (
+      {filteredPubs.map((pub, i) => (
         <div key={i} className='row' style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
           <p className='pub' style={{ flex: 1 }}>
             {pub.distinguished && (

@@ -1,6 +1,9 @@
 import type { NextConfig } from 'next';
 import createMDX from '@next/mdx';
 import postgres from 'postgres';
+import remarkMath from 'remark-math';
+import remarkGfm from 'remark-gfm';
+import rehypeKatex from 'rehype-katex';
 
 export const sql = postgres(process.env.POSTGRES_URL!, {
   ssl: 'allow',
@@ -24,13 +27,18 @@ const nextConfig: NextConfig = {
       permanent: !!permanent,
     }));
   },
-  // Note: Using the Rust compiler means we cannot use
-  // rehype or remark plugins. For my app, this is fine.
+  // Keep JS MDX for math support (slower dev, but production is fast)
   experimental: {
-    mdxRs: true,
+    mdxRs: false,
+    optimizePackageImports: ['katex'],
   },
 };
 
-const withMDX = createMDX({});
+const withMDX = createMDX({
+  options: {
+    remarkPlugins: [remarkMath, remarkGfm],
+    rehypePlugins: [rehypeKatex],
+  },
+});
 
 export default withMDX(nextConfig);

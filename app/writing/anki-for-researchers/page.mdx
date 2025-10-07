@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { TableOfContents } from '../../components/TableOfContents'
 
 export const metadata = {
   title: 'Anki for Researchers: Building a Long-Term Knowledge System',
@@ -10,9 +11,10 @@ export const metadata = {
   <div id="left" className="container">
     <div className="flex flex-col">
       <p><Link href="/">← Back to home</Link></p>
-      <p style={{ marginTop: '1rem', fontSize: '0.9rem', color: '#666' }}>
+      <div className="post-date">
         January 15, 2025
-      </p>
+      </div>
+      <TableOfContents />
     </div>
   </div>
   
@@ -20,6 +22,8 @@ export const metadata = {
     # Anki for Researchers: Building a Long-Term Knowledge System
 
     *How I use spaced repetition to retain complex research concepts and build deep understanding over time.*
+
+    > **Note:** This is an AI-generated example post created to demonstrate blog formatting. It is not written by the site author.
 
     ## The Problem
 

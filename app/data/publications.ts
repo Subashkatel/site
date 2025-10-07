@@ -6,6 +6,7 @@ export interface Publication {
   url: string;
   distinguished?: boolean;
   image?: string;
+  featured?: boolean;
 }
 
 export const publications: Publication[] = [
@@ -16,6 +17,7 @@ export const publications: Publication[] = [
     year: 2024,
     url: "https://arxiv.org/abs/2412.05333",
     image: "/images/jepa.png",
+    featured: true,
   },
   {
     title: "Reducing the Carbon Footprint of EdTech with Repurposed Devices",
@@ -24,5 +26,6 @@ export const publications: Publication[] = [
     year: 2024,
     url: "https://ieeexplore.ieee.org/abstract/document/10765841",
     image: "/images/carbon_foot.png",
+    featured: true,
   },
 ];

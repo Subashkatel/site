@@ -416,12 +416,12 @@ a:visited {
   margin-top: 1.5rem;
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 0.4rem;
 }
 
 .writing-card {
   display: block;
-  padding: 1rem;
+  padding: 0.75rem;
   border: 1px solid #ddd;
   border-radius: 8px;
   text-decoration: none;
@@ -464,4 +464,54 @@ a:visited {
   font-size: 0.85rem;
   color: #999 !important;
   font-style: italic;
+}
+
+/* Footnotes styling */
+.footnotes {
+  margin-top: 3rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e5e7eb;
+  font-size: 0.9rem;
+  color: #6b7280;
+}
+
+.footnotes ol {
+  padding-left: 1.5rem;
+}
+
+.footnotes li {
+  margin-bottom: 0.5rem;
+  line-height: 1.6;
+}
+
+.footnotes li p {
+  margin: 0;
+  display: inline;
+}
+
+.footnotes a {
+  color: #2563eb;
+  text-decoration: none;
+}
+
+.footnotes a:hover {
+  text-decoration: underline;
+}
+
+/* Footnote references in text */
+sup a {
+  color: #2563eb;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+sup a:hover {
+  text-decoration: underline;
+}
+
+/* Blog post date styling */
+.post-date {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #666;
 }

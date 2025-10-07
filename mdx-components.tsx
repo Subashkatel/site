@@ -36,8 +36,14 @@ const components = {
   strong: (props: ComponentPropsWithoutRef<'strong'>) => (
     <strong className="font-medium" {...props} />
   ),
-  a: ({ href, children, ...props }: AnchorProps) => {
-    const className = 'text-blue-500 hover:text-blue-700';
+  a: ({ href, children, className: providedClassName, ...props }: AnchorProps) => {
+    const className = providedClassName || 'text-blue-500 hover:text-blue-700';
+    
+    // If children is already an anchor element, just return it as-is to avoid nesting
+    if (React.isValidElement(children) && children.type === 'a') {
+      return children;
+    }
+    
     if (href?.startsWith('/')) {
       return (
         <Link href={href} className={className} {...props}>
@@ -46,6 +52,14 @@ const components = {
       );
     }
     if (href?.startsWith('#')) {
+      return (
+        <a href={href} className={className} {...props}>
+          {children}
+        </a>
+      );
+    }
+    // Check if it's mailto: or tel: or other special protocols
+    if (href?.startsWith('mailto:') || href?.startsWith('tel:')) {
       return (
         <a href={href} className={className} {...props}>
           {children}

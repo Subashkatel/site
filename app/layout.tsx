@@ -1,4 +1,5 @@
 import './globals.css';
+import 'katex/dist/katex.min.css';
 import type { Metadata } from 'next';
 import { ViewTransitions } from 'next-view-transitions';
 import { Analytics } from '@vercel/analytics/react';
@@ -40,6 +41,7 @@ function Footer() {
   const links = [
     { name: 'GitHub', url: 'https://github.com/subashkatel' },
     { name: 'LinkedIn', url: 'https://linkedin.com/in/subashkatel' },
+    { name: 'Credits', url: '/credits' },
   ];
 
   return (
