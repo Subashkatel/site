@@ -38,6 +38,7 @@ function Footer() {
   const links = [
     { name: 'GitHub', url: 'https://github.com/subashkatel', external: true },
     { name: 'LinkedIn', url: 'https://linkedin.com/in/subashkatel', external: true },
+    { name: 'Resources', url: '/resources', external: false },
     { name: 'Credits', url: '/credits', external: false },
   ];
 

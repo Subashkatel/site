@@ -310,17 +310,18 @@ input[type='email'] {
   #wrapper {
     flex-direction: column;
     padding: 2rem 1rem;
-    gap: 2rem;
+    gap: 1rem;
   }
   
   #left, #right {
     width: 100%;
     padding-right: 0;
+    padding-left: 0;
   }
   
   #left {
     position: static;
-    padding: 0 1rem;
+    padding: 0;
   }
   
   #left .relative {
@@ -329,8 +330,13 @@ input[type='email'] {
     height: 200px !important; /* Fixed height */
   }
   
+  /* Hide Resources section on mobile */
+  #left > div > div:last-child {
+    display: none;
+  }
+  
   #right {
-    margin-top: 1rem;
+    margin-top: 0;
   }
 }
 
@@ -514,4 +520,32 @@ sup a:hover {
   margin-top: 1rem;
   font-size: 0.9rem;
   color: #666;
+}
+
+/* Resources page compact spacing */
+.resources-page {
+  margin-top: 0 !important;
+}
+
+.resources-page h2:first-child {
+  margin-top: 0 !important;
+}
+
+.resources-page h2 {
+  margin-top: 0.5rem !important;
+  margin-bottom: 0.75rem !important;
+}
+
+.resources-page h3 {
+  margin-top: 1.25rem !important;
+  margin-bottom: 0.5rem !important;
+}
+
+.resources-page p {
+  margin-bottom: 0.75rem !important;
+}
+
+.resources-page ul {
+  margin-top: 0.5rem !important;
+  margin-bottom: 1rem !important;
 }
