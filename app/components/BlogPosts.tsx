@@ -8,8 +8,8 @@ interface BlogPostsProps {
 
 export function BlogPosts({ posts, showOnlyFeatured = false }: BlogPostsProps) {
   const filteredPosts = showOnlyFeatured 
-    ? posts.filter(post => post.featured && post.published)
-    : posts;
+    ? posts.filter(post => post.featured && post.published && !post.hidden)
+    : posts.filter(post => !post.hidden);
 
   return (
     <div className="writing-cards">

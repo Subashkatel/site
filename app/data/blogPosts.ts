@@ -5,6 +5,7 @@ export interface BlogPost {
   date?: string;
   featured?: boolean;
   published?: boolean;
+  hidden?: boolean; // If true, the post will not be displayed at all
 }
 
 export const blogPosts: BlogPost[] = [
@@ -15,6 +16,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-01-15",
     featured: true,
     published: true,
+    hidden: false,
   },
   {
     title: "Quantum Entanglement and Bell States: A Mathematical Journey",
@@ -23,6 +25,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-01-12",
     featured: true,
     published: true,
+    hidden: true,
   },
   {
     title: "Gradient Descent: From Theory to Modern Optimizers",
@@ -31,6 +34,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-01-11",
     featured: true,
     published: true,
+    hidden: false,
   },
   {
     title: "Paper Review: Quantum Architecture",
@@ -38,6 +42,7 @@ export const blogPosts: BlogPost[] = [
     slug: "paper-review-quantum",
     featured: true,
     published: false,
+    hidden: false,
   },
   {
     title: "My Princeton Journey",
@@ -45,6 +50,7 @@ export const blogPosts: BlogPost[] = [
     slug: "princeton-journey",
     featured: false,
     published: false,
+    hidden: true,
   },
   {
     title: "Learning Systems",
@@ -52,5 +58,6 @@ export const blogPosts: BlogPost[] = [
     slug: "learning-systems",
     featured: false,
     published: false,
+    hidden: true,
   },
 ];
