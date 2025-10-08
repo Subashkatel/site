@@ -1,4 +1,4 @@
-import myImage from '../public/images/profile.png';
+import myImage from '../public/images/IMG_1226.jpg';
 import Image from 'next/image';
 
 export function NameTransition({ showPicture = true }: { showPicture?: boolean }) {
