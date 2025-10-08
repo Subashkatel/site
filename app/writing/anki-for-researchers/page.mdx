@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { TableOfContents } from '../../components/TableOfContents'
+import { BlogLayout } from '../../components/BlogLayout'
 
 export const metadata = {
   title: 'Anki for Researchers: Building a Long-Term Knowledge System',
@@ -7,19 +6,9 @@ export const metadata = {
   date: '2025-01-15',
 }
 
-<div id="wrapper">
-  <div id="left" className="container">
-    <div className="flex flex-col">
-      <p><Link href="/">← Back to home</Link></p>
-      <div className="post-date">
-        January 15, 2025
-      </div>
-      <TableOfContents />
-    </div>
-  </div>
-  
-  <div id="right" className="container">
-    # Anki for Researchers: Building a Long-Term Knowledge System
+<BlogLayout date="January 15, 2025">
+
+# Anki for Researchers: Building a Long-Term Knowledge System
 
     *How I use spaced repetition to retain complex research concepts and build deep understanding over time.*
 
@@ -103,9 +92,8 @@ export const metadata = {
 
     The key insight: **Long-term memory is essential for deep understanding**. You can't make novel connections if you've forgotten the fundamentals.
 
-    ---
+---
 
-    *Have questions about my Anki workflow? Feel free to reach out at [skatel@princeton.edu](mailto:skatel@princeton.edu)*
+*Have questions about my Anki workflow? Feel free to reach out at [skatel@princeton.edu](mailto:skatel@princeton.edu)*
 
-  </div>
-</div>
+</BlogLayout>

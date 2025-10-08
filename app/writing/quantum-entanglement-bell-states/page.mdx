@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { TableOfContents } from '../../components/TableOfContents'
+import { BlogLayout } from '../../components/BlogLayout'
 
 export const metadata = {
   title: 'Quantum Entanglement and Bell States: A Mathematical Journey',
@@ -7,18 +6,7 @@ export const metadata = {
   date: '2025-01-12',
 }
 
-<div id="wrapper">
-  <div id="left" className="container">
-    <div className="flex flex-col">
-      <p><Link href="/">← Back to home</Link></p>
-      <div className="post-date">
-        January 12, 2025
-      </div>
-      <TableOfContents />
-    </div>
-  </div>
-  
-  <div id="right" className="container">
+<BlogLayout date="January 12, 2025">
 
 # Quantum Entanglement and Bell States: A Mathematical Journey
 
@@ -753,5 +741,4 @@ Entanglement is not just a theoretical curiosity—it's the foundation of quantu
 
 *Interested in quantum computing research? Let's discuss: [skatel@princeton.edu](mailto:skatel@princeton.edu)*
 
-  </div>
-</div>
+</BlogLayout>

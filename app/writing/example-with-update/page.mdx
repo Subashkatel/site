@@ -1,0 +1,26 @@
+import { BlogLayout } from '../../components/BlogLayout'
+
+export const metadata = {
+  title: 'Example: Updated Post',
+  description: 'Showing how updated dates work',
+}
+
+<BlogLayout date="January 15, 2025" updatedDate="March 10, 2025">
+
+# Example Post with Update Date
+
+*This post was originally published in January but updated in March.*
+
+## Original Content
+
+This is the original content from January.
+
+## Updated Section
+
+After receiving feedback, I added this section in March 2025.
+
+Notice how the sidebar shows:
+- Original date: January 15, 2025
+- Updated: March 10, 2025
+
+</BlogLayout>

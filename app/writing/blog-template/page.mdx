@@ -1,0 +1,350 @@
+{/* 
+  ============================================================================
+  BLOG POST TEMPLATE
+  ============================================================================
+  
+  INSTRUCTIONS:
+  1. Copy this entire file to a new folder in /app/writing/[your-slug]/page.mdx
+  2. Replace [your-slug] with your blog post's URL-friendly name (e.g., "my-awesome-post")
+  3. Fill in all the sections below
+  4. Delete or comment out sections you don't need
+  5. Add your blog post to /app/data/blogPosts.ts with matching slug
+  
+  MARKDOWN TIPS:
+  - Use # for main title, ## for sections, ### for subsections
+  - Use **bold** for emphasis, *italic* for lighter emphasis
+  - Use `code` for inline code, ```language for code blocks
+  - Use $inline math$ for inline equations, $$block math$$ for block equations
+  - Use [link text](url) for links
+  - Use ![alt text](/images/image.png) for images
+  
+  ============================================================================
+*/}
+
+{/* 
+  ============================================================================
+  METADATA & IMPORTS
+  ============================================================================
+  Import the BlogLayout component to handle the page structure automatically.
+  This gives you the two-column layout with sidebar and table of contents.
+*/}
+
+import { BlogLayout } from '../../components/BlogLayout'
+
+export const metadata = {
+  title: 'Your Blog Post Title Here',  // Shows in browser tab and SEO
+  description: 'A brief description of your blog post (1-2 sentences). This appears in search results and social media previews.',  // Important for SEO
+  date: 'YYYY-MM-DD',  // Optional: used for sorting/display in blogPosts.ts
+}
+
+{/* 
+  ============================================================================
+  BLOG LAYOUT WRAPPER
+  ============================================================================
+  BlogLayout creates the two-column layout automatically:
+  - Left sidebar: Back button, dates, table of contents
+  - Right column: Your blog content
+  
+  Props:
+  - date: Original publish date in "Month Day, Year" format (e.g., "January 15, 2025")
+  - updatedDate: (Optional) Last updated date, shows "Updated: [date]" below original
+  - showTableOfContents: (Optional) Set to false to hide TOC (default: true)
+  
+  Examples:
+  <BlogLayout date="January 15, 2025">
+    Basic usage - shows original date only
+  
+  <BlogLayout date="January 15, 2025" updatedDate="February 20, 2025">
+    Shows both original and updated dates
+  
+  <BlogLayout date="January 15, 2025" showTableOfContents={false}>
+    Hides table of contents for shorter posts
+  
+  Everything inside <BlogLayout> becomes your blog content!
+*/}
+
+<BlogLayout date="January 15, 2025" showTableOfContents={true}>
+
+{/* 
+  ============================================================================
+  BLOG POST CONTENT STARTS HERE
+  ============================================================================
+  Everything below is your actual blog post content. No more wrapper divs needed!
+*/}
+
+# Your Blog Post Title Here
+
+{/* 
+  Optional: Add a subtitle or tagline in italics
+  Example: *A deep dive into the topic with practical examples*
+*/}
+
+*Your optional subtitle or tagline goes here*
+
+{/* 
+  ============================================================================
+  INTRODUCTION
+  ============================================================================
+  Start with a compelling introduction that:
+  - Hooks the reader's attention
+  - Explains what the post is about
+  - States why it matters or what the reader will learn
+  - Keep it 2-4 paragraphs
+*/}
+
+Your introduction paragraph goes here. Start with something interesting that grabs attention.
+
+Explain the context and why this topic matters. What problem does it solve? What will the reader learn?
+
+{/* 
+  Optional: Add a table of contents for longer posts (3+ major sections)
+  Uncomment the line below if you want to use it
+*/}
+
+{/* <TableOfContents /> */}
+
+{/* 
+  ============================================================================
+  MAIN CONTENT SECTIONS
+  ============================================================================
+  Organize your content into clear sections with ## headings.
+  Use ### for subsections within each main section.
+*/}
+
+## First Main Section
+
+Start your first major point or topic here. Break complex ideas into digestible paragraphs.
+
+### Subsection 1.1
+
+Use subsections to break down complex topics into smaller, manageable pieces.
+
+{/* 
+  CODE BLOCKS
+  Use triple backticks with language name for syntax highlighting
+  Supported: javascript, typescript, python, bash, etc.
+*/}
+
+```python
+# Example: Python code block
+def example_function(param):
+    """This is how you add code to your post"""
+    return param * 2
+
+result = example_function(5)
+print(f"Result: {result}")
+```
+
+### Subsection 1.2
+
+Continue with related points or examples.
+
+{/* 
+  INLINE CODE
+  Use backticks for inline code, function names, or technical terms
+*/}
+
+You can reference code inline like `variableName` or `functionName()` within your text.
+
+## Second Main Section
+
+{/* 
+  MATH EQUATIONS
+  Use $ for inline math: $E = mc^2$
+  Use $$ for block equations (display math)
+*/}
+
+Sometimes you need to include math. For inline math, use single dollar signs: $x^2 + y^2 = z^2$.
+
+For larger equations, use double dollar signs:
+
+$$
+\int_{a}^{b} f(x) \, dx = F(b) - F(a)
+$$
+
+You can also write multi-line equations:
+
+$$
+\begin{aligned}
+f(x) &= x^2 + 2x + 1 \\
+&= (x + 1)^2 \\
+&= (x + 1)(x + 1)
+\end{aligned}
+$$
+
+## Third Main Section
+
+{/* 
+  LISTS
+  Use - or * for unordered lists
+  Use 1. 2. 3. for ordered lists
+*/}
+
+Here are some key points to remember:
+
+- First important point
+- Second important point
+  - Nested point A
+  - Nested point B
+- Third important point
+
+Or use numbered lists when order matters:
+
+1. First step
+2. Second step
+3. Third step
+
+{/* 
+  BLOCKQUOTES
+  Use > for quotes or callouts
+*/}
+
+> This is a blockquote. Use it for important callouts, quotes, or warnings.
+> You can span multiple lines like this.
+
+## Code Examples and Explanations
+
+{/* 
+  TYPESCRIPT/JAVASCRIPT EXAMPLES
+  Great for showing React components or Next.js code
+*/}
+
+Here's a more complex example with TypeScript:
+
+```typescript
+interface BlogPost {
+  title: string;
+  description: string;
+  slug: string;
+  date?: string;
+  published?: boolean;
+}
+
+export const myPost: BlogPost = {
+  title: "My Blog Post",
+  description: "A great post",
+  slug: "my-blog-post",
+  date: "2025-01-15",
+  published: true,
+}
+```
+
+## Images and Media
+
+{/* 
+  IMAGES
+  Place images in /public/images/ folder
+  Use relative path starting with /images/
+*/}
+
+You can add images to your blog post:
+
+![Description of the image](/images/your-image.png)
+
+Add a caption below if needed:
+*Figure 1: Description of what the image shows*
+
+## Interactive Elements
+
+{/* 
+  LINKS
+  Internal links: /writing/other-post
+  External links: https://example.com
+*/}
+
+You can link to [other blog posts](/writing/anki-for-researchers) or [external resources](https://example.com).
+
+{/* 
+  EMPHASIS
+  **bold** for strong emphasis
+  *italic* for lighter emphasis
+  ***bold and italic*** for both
+*/}
+
+Use **bold text** for important terms or concepts. Use *italic text* for subtle emphasis.
+
+## Best Practices and Tips
+
+{/* 
+  TIPS FOR WRITING GOOD BLOG POSTS:
+  
+  1. Structure: Clear hierarchy with headings (##, ###)
+  2. Readability: Short paragraphs (2-4 sentences), white space
+  3. Examples: Include concrete examples and code
+  4. Visuals: Add images, diagrams, or code samples
+  5. Flow: Each section should lead naturally to the next
+  6. Summary: End with key takeaways
+  7. Length: Aim for 1000-2000 words for technical posts
+  8. Proofreading: Check spelling, grammar, and code accuracy
+*/}
+
+Some tips for this section:
+- Keep explanations clear and concise
+- Use examples to illustrate complex concepts
+- Break up long sections with subheadings
+- Include code snippets where relevant
+
+## Conclusion
+
+{/* 
+  ============================================================================
+  CONCLUSION
+  ============================================================================
+  Wrap up your post by:
+  - Summarizing key takeaways (2-4 bullet points)
+  - Reinforcing the main message
+  - Optional: Call to action (try it yourself, leave a comment, etc.)
+*/}
+
+Let's recap what we covered:
+
+- **Key point 1**: Brief summary
+- **Key point 2**: Brief summary  
+- **Key point 3**: Brief summary
+
+Final thoughts or call to action goes here. Encourage readers to try what they learned or explore further.
+
+{/* 
+  ============================================================================
+  OPTIONAL: REFERENCES AND FURTHER READING
+  ============================================================================
+*/}
+
+## References
+
+If you cited any sources or want to provide further reading:
+
+1. [Article Title](https://example.com) - Brief description
+2. [Another Resource](https://example.com) - Brief description
+3. [Documentation](https://example.com) - Brief description
+
+{/* 
+  ============================================================================
+  CLOSING TAG - REQUIRED!
+  ============================================================================
+  Don't forget to close the BlogLayout component!
+*/}
+
+</BlogLayout>
+
+{/* 
+  ============================================================================
+  CHECKLIST BEFORE PUBLISHING
+  ============================================================================
+  
+  [ ] Updated metadata (title, description, date)
+  [ ] Updated post date in the left sidebar
+  [ ] Added blog post entry to /app/data/blogPosts.ts with matching slug
+  [ ] Set published: true when ready to go live
+  [ ] All code examples tested and working
+  [ ] All images placed in /public/images/ and paths are correct
+  [ ] Spell-checked and proofread
+  [ ] Equations render correctly (if using math)
+  [ ] Links work correctly
+  [ ] Post renders correctly in dev mode (npm run dev)
+  [ ] Table of Contents generated correctly (if used)
+  [ ] Back to home link works
+  [ ] Committed and pushed to repository
+  
+  ============================================================================
+*/}

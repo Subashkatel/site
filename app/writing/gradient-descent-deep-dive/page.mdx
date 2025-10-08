@@ -1,5 +1,4 @@
-import Link from 'next/link'
-import { TableOfContents } from '../../components/TableOfContents'
+import { BlogLayout } from '../../components/BlogLayout'
 
 export const metadata = {
   title: 'Gradient Descent: From Theory to Modern Optimizers',
@@ -7,18 +6,7 @@ export const metadata = {
   date: '2025-01-11',
 }
 
-<div id="wrapper">
-  <div id="left" className="container">
-    <div className="flex flex-col">
-      <p><Link href="/">← Back to home</Link></p>
-      <div className="post-date">
-        January 11, 2025
-      </div>
-      <TableOfContents />
-    </div>
-  </div>
-  
-  <div id="right" className="container">
+<BlogLayout date="January 11, 2025">
 
 # Gradient Descent: From Theory to Modern Optimizers
 
@@ -609,5 +597,4 @@ For most deep learning tasks, **start with Adam** and fall back to SGD+Momentum 
 
 *Questions or comments? Reach out at [skatel@princeton.edu](mailto:skatel@princeton.edu)*
 
-  </div>
-</div>
+</BlogLayout>
