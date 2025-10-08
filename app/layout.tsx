@@ -9,12 +9,51 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://subashkatel.com'),
   alternates: {
     canonical: '/',
+    types: {
+      'application/rss+xml': '/feed.xml',
+    },
   },
   title: {
     default: 'Subash Katel',
     template: '%s | Subash Katel',
   },
-  description: 'PhD Student in Computer Science at Princeton University',
+  description: 'PhD Student in Computer Science at Princeton University researching computer architecture and quantum computing',
+  keywords: ['computer architecture', 'quantum computing', 'Princeton', 'PhD', 'research', 'machine learning'],
+  authors: [{ name: 'Subash Katel', url: 'https://subashkatel.com' }],
+  creator: 'Subash Katel',
+  openGraph: {
+    type: 'website',
+    locale: 'en_US',
+    url: 'https://subashkatel.com',
+    title: 'Subash Katel',
+    description: 'PhD Student in Computer Science at Princeton University researching computer architecture and quantum computing',
+    siteName: 'Subash Katel',
+    images: [
+      {
+        url: '/images/profile.png',
+        width: 1200,
+        height: 630,
+        alt: 'Subash Katel',
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'Subash Katel',
+    description: 'PhD Student in Computer Science at Princeton University researching computer architecture and quantum computing',
+    images: ['/images/profile.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
+  },
 };
 
 export default function RootLayout({
