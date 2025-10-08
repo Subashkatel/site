@@ -3,9 +3,10 @@ import { BlogLayout } from '../../components/BlogLayout'
 export const metadata = {
   title: 'My Simple Blog Post',
   description: 'This is so much easier now!',
+  date: '2025-01-20',
 }
 
-<BlogLayout date="January 20, 2025">
+<BlogLayout date={metadata.date}>
 
 # My Simple Blog Post
 

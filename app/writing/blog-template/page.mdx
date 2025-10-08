@@ -34,7 +34,8 @@ import { BlogLayout } from '../../components/BlogLayout'
 export const metadata = {
   title: 'Your Blog Post Title Here',  // Shows in browser tab and SEO
   description: 'A brief description of your blog post (1-2 sentences). This appears in search results and social media previews.',  // Important for SEO
-  date: 'YYYY-MM-DD',  // Optional: used for sorting/display in blogPosts.ts
+  date: '2025-01-15',  // Publish date in ISO format (YYYY-MM-DD) - automatically formatted for display
+  updatedDate: '2025-02-20',  // Optional: Last update date (remove this line if not needed)
 }
 
 {/* 
@@ -42,28 +43,30 @@ export const metadata = {
   BLOG LAYOUT WRAPPER
   ============================================================================
   BlogLayout creates the two-column layout automatically:
-  - Left sidebar: Back button, dates, table of contents
+  - Left sidebar: Back button, dates (auto-formatted from metadata), table of contents
   - Right column: Your blog content
   
+  Just pass metadata.date and it will automatically format it to "Month Day, Year"!
+  
   Props:
-  - date: Original publish date in "Month Day, Year" format (e.g., "January 15, 2025")
-  - updatedDate: (Optional) Last updated date, shows "Updated: [date]" below original
+  - date: Pass {metadata.date} - will be formatted automatically
+  - updatedDate: (Optional) Pass {metadata.updatedDate} to show "Updated: [date]"
   - showTableOfContents: (Optional) Set to false to hide TOC (default: true)
   
   Examples:
-  <BlogLayout date="January 15, 2025">
-    Basic usage - shows original date only
+  <BlogLayout date={metadata.date}>
+    Basic usage - dates from metadata, auto-formatted
   
-  <BlogLayout date="January 15, 2025" updatedDate="February 20, 2025">
-    Shows both original and updated dates
+  <BlogLayout date={metadata.date} updatedDate={metadata.updatedDate}>
+    Shows both original and updated dates from metadata
   
-  <BlogLayout date="January 15, 2025" showTableOfContents={false}>
+  <BlogLayout date={metadata.date} showTableOfContents={false}>
     Hides table of contents for shorter posts
   
   Everything inside <BlogLayout> becomes your blog content!
 */}
 
-<BlogLayout date="January 15, 2025" showTableOfContents={true}>
+<BlogLayout date={metadata.date} updatedDate={metadata.updatedDate} showTableOfContents={true}>
 
 {/* 
   ============================================================================

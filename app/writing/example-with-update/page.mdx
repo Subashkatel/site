@@ -3,9 +3,11 @@ import { BlogLayout } from '../../components/BlogLayout'
 export const metadata = {
   title: 'Example: Updated Post',
   description: 'Showing how updated dates work',
+  date: '2025-01-15',
+  updatedDate: '2025-03-10',
 }
 
-<BlogLayout date="January 15, 2025" updatedDate="March 10, 2025">
+<BlogLayout date={metadata.date} updatedDate={metadata.updatedDate}>
 
 # Example Post with Update Date
 
