@@ -9,6 +9,27 @@ type ListItemProps = ComponentPropsWithoutRef<'li'>;
 type AnchorProps = ComponentPropsWithoutRef<'a'>;
 type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
+// Color helper components for cleaner syntax
+export const Blue = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: '#2563eb', fontWeight: '600' }}>{children}</span>
+);
+
+export const Red = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: '#dc2626', fontWeight: '600' }}>{children}</span>
+);
+
+export const Green = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: '#059669', fontWeight: '600' }}>{children}</span>
+);
+
+export const Purple = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: '#7c3aed', fontWeight: '600' }}>{children}</span>
+);
+
+export const Orange = ({ children }: { children: React.ReactNode }) => (
+  <span style={{ color: '#ea580c', fontWeight: '600' }}>{children}</span>
+);
+
 const components = {
   h1: (props: HeadingProps) => (
     <h1 className="font-medium pt-12 mb-0 fade-in" {...props} />
