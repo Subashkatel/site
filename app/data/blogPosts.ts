@@ -16,7 +16,7 @@ export const blogPosts: BlogPost[] = [
     date: "2025-01-15",
     featured: true,
     published: true,
-    hidden: false,
+    hidden: true,
   },
   {
     title: "Quantum Entanglement and Bell States: A Mathematical Journey",
