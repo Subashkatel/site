@@ -15,13 +15,15 @@ export const metadata = {
     </div>
   </div>
   
-  <div id="right" className="container">
+    <div id="right" className="container">
     ## All Posts
 
     I write about my research, learning journey, and tools I find useful.
 
-    *Subscribe via [RSS feed](/feed.xml) to get updates*
-
     <BlogPosts posts={blogPosts} showOnlyFeatured={false} />
   </div>
+
+  <Link href="/feed.xml" title="Subscribe via RSS" className="hidden md:block" style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 50 }}>
+    <img src="/images/rssfeed2.png" alt="RSS Feed" width="32" height="32" className="hover:opacity-70 transition-opacity" />
+  </Link>
 </div>
