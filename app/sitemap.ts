@@ -1,3 +1,5 @@
+import { blogPosts } from './data/blogPosts';
+
 export default async function sitemap() {
   const routes = [
     '',
@@ -10,15 +12,13 @@ export default async function sitemap() {
     lastModified: new Date().toISOString(),
   }));
 
-  // Add blog posts
-  const blogPosts = [
-    '/writing/anki-for-researchers',
-    '/writing/quantum-entanglement-bell-states',
-    '/writing/gradient-descent-deep-dive',
-  ].map((route) => ({
-    url: `https://subashkatel.com${route}`,
-    lastModified: new Date().toISOString(),
-  }));
+  // Add published blog posts dynamically
+  const blogRoutes = blogPosts
+    .filter((post) => post.published && !post.hidden)
+    .map((post) => ({
+      url: `https://subashkatel.com/writing/${post.slug}`,
+      lastModified: new Date().toISOString(),
+    }));
 
-  return [...routes, ...blogPosts];
+  return [...routes, ...blogRoutes];
 }

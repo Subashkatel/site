@@ -27,7 +27,7 @@ const nextConfig: NextConfig = {
       permanent: !!permanent,
     }));
   },
-  // Keep JS MDX for math support (slower dev, but production is fast)
+  // Use JS MDX compiler for full LaTeX/math support (Rust mode has issues with complex equations)
   experimental: {
     mdxRs: false,
     optimizePackageImports: ['katex'],

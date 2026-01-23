@@ -107,7 +107,35 @@ Explain the context and why this topic matters. What problem does it solve? What
 
 {/* <TableOfContents /> */}
 
-{/* 
+{/*
+  ============================================================================
+  COLOR COMPONENTS - GLOBALLY AVAILABLE!
+  ============================================================================
+  No imports needed! These work in every MDX file automatically.
+  Just wrap your text - that's it!
+*/}
+
+## Using Colors (No Imports, No CSS!)
+
+You have 5 color components that work everywhere:
+
+<Blue>Blue text</Blue> - Use for important concepts or key terms
+
+<Red>Red text</Red> - Use for warnings, errors, or critical info
+
+<Green>Green text</Green> - Use for success, positive outcomes
+
+<Purple>Purple text</Purple> - Use for special terminology or highlights
+
+<Orange>Orange text</Orange> - Use for cautions or notes
+
+**Example in a sentence:**
+<Blue>Quantum entanglement</Blue> is where <Red>measuring one particle instantly affects another</Red>,
+enabling <Green>perfectly secure quantum cryptography</Green>.
+
+**That's it!** No imports, no CSS, no inline styles. Just type `<Blue>your text</Blue>`.
+
+{/*
   ============================================================================
   MAIN CONTENT SECTIONS
   ============================================================================
@@ -152,29 +180,42 @@ You can reference code inline like `variableName` or `functionName()` within you
 
 ## Second Main Section
 
-{/* 
-  MATH EQUATIONS
+{/*
+  ============================================================================
+  LATEX MATH - FULLY SUPPORTED!
+  ============================================================================
   Use $ for inline math: $E = mc^2$
-  Use $$ for block equations (display math)
+  Use $$ for block equations
+  Supports: integrals, matrices, aligned environments, all standard LaTeX
 */}
 
-Sometimes you need to include math. For inline math, use single dollar signs: $x^2 + y^2 = z^2$.
+## Mathematics with LaTeX
 
-For larger equations, use double dollar signs:
+**Inline math:** Use single `$` like this: $x^2 + y^2 = z^2$ or $E = mc^2$ or $\alpha = \frac{1}{2}$
+
+**Block equations:** Use double `$$`:
 
 $$
-\int_{a}^{b} f(x) \, dx = F(b) - F(a)
+\int_{-\infty}^{\infty} e^{-x^2} \, dx = \sqrt{\pi}
 $$
 
-You can also write multi-line equations:
+**Multi-line equations:**
 
 $$
 \begin{aligned}
-f(x) &= x^2 + 2x + 1 \\
-&= (x + 1)^2 \\
-&= (x + 1)(x + 1)
+f(x) &= (x + 1)^2 \\
+&= x^2 + 2x + 1 \\
+&= x(x + 2) + 1
 \end{aligned}
 $$
+
+**Matrices and advanced LaTeX:**
+
+$$
+H = \frac{1}{\sqrt{2}} \begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
+$$
+
+All standard LaTeX commands work: Greek letters, fractions, integrals, sums, etc.
 
 ## Third Main Section
 
@@ -352,3 +393,4 @@ If you cited any sources or want to provide further reading:
   
   ============================================================================
 */}
+

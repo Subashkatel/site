@@ -4,7 +4,7 @@ export async function GET() {
   const siteUrl = 'https://subashkatel.com'
   const author = {
     name: 'Subash Katel',
-    email: 'skatel@princeton.edu',
+    email: 'skatel at princeton.edu',
   }
 
   // Filter to only published posts and sort by date (newest first)

@@ -39,3 +39,9 @@ next-env.d.ts
 # jupyter notebooks
 *.ipynb
 .ipynb_checkpoints/
+
+# Auto-generated blog post list
+/app/data/blogPosts.ts
+
+# Claude Code instructions (personal)
+CLAUDE.md

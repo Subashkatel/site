@@ -9,25 +9,32 @@ type ListItemProps = ComponentPropsWithoutRef<'li'>;
 type AnchorProps = ComponentPropsWithoutRef<'a'>;
 type BlockquoteProps = ComponentPropsWithoutRef<'blockquote'>;
 
-// Color helper components for cleaner syntax
+// Color helper components for cleaner syntax (Tailwind for Rust MDX parser compatibility)
 export const Blue = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: '#2563eb', fontWeight: '600' }}>{children}</span>
+  <span className="text-blue-600 font-semibold">{children}</span>
 );
 
 export const Red = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: '#dc2626', fontWeight: '600' }}>{children}</span>
+  <span className="text-red-600 font-semibold">{children}</span>
 );
 
 export const Green = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: '#059669', fontWeight: '600' }}>{children}</span>
+  <span className="text-emerald-600 font-semibold">{children}</span>
 );
 
 export const Purple = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: '#7c3aed', fontWeight: '600' }}>{children}</span>
+  <span className="text-purple-600 font-semibold">{children}</span>
 );
 
 export const Orange = ({ children }: { children: React.ReactNode }) => (
-  <span style={{ color: '#ea580c', fontWeight: '600' }}>{children}</span>
+  <span className="text-orange-600 font-semibold">{children}</span>
+);
+
+// Quantum circuit component for displaying quantum circuits in text form
+export const QuantumCircuit = ({ children }: { children: React.ReactNode }) => (
+  <pre className="font-mono bg-gray-50 p-4 rounded-lg overflow-x-auto border border-gray-200 my-4">
+    <code className="text-sm text-gray-800">{children}</code>
+  </pre>
 );
 
 const components = {
@@ -137,6 +144,14 @@ const components = {
       {...props}
     />
   ),
+  // Color components - globally available in all MDX files without imports
+  Blue,
+  Red,
+  Green,
+  Purple,
+  Orange,
+  // Quantum circuit display component
+  QuantumCircuit,
 };
 
 declare global {

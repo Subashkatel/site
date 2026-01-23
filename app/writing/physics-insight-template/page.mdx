@@ -1,0 +1,246 @@
+import { BlogLayout } from '../../components/BlogLayout'
+
+export const metadata = {
+  title: 'Template: Quick Physics Insight',
+  description: 'Template for shorter explanations of quantum concepts with focus on intuition',
+  date: '2025-01-22',
+  published: false,
+  hidden: true, // Hide from listings
+}
+
+<BlogLayout date={metadata.date}>
+
+{/*
+  ============================================================================
+  QUICK PHYSICS INSIGHT TEMPLATE
+  ============================================================================
+
+  PURPOSE: Shorter explanations of quantum concepts, intuitions, learning notes
+  TARGET LENGTH: 500-1200 words
+
+  FEATURES:
+  - Moderate LaTeX (key equations only)
+  - Focus on intuition over rigor
+  - Minimal code (if needed)
+  - Visual explanations
+  - Accessible to broader audience
+
+  INSTRUCTIONS:
+  1. Copy this entire folder to a new folder: /app/writing/[your-slug]/
+  2. Replace [your-slug] with your post's URL name (e.g., "quantum-entanglement-intuition")
+  3. Update the metadata above (title, description, date)
+  4. Set published: true when ready to publish
+  5. Remove hidden: true to show in blog listings
+  6. Fill in the sections below - keep it concise and intuitive!
+  7. Run `npm run gen-posts` to register your post
+
+  ============================================================================
+*/}
+
+# Your Physics Concept Title Here
+
+*A one-sentence hook that captures why this concept is fascinating or important*
+
+{/*
+  ============================================================================
+  THE BIG IDEA
+  ============================================================================
+  Core concept explanation in plain language
+  Avoid jargon where possible, explain intuitively
+*/}
+
+## The Big Idea
+
+Imagine you have [everyday analogy]. This is similar to [quantum concept], except [key difference that makes it quantum].
+
+The core insight is simple: <Blue>[state the main idea in one sentence]</Blue>.
+
+Here's what makes this counterintuitive: [explain what's weird/surprising about this concept from a classical perspective].
+
+{/*
+  ============================================================================
+  WHY IT MATTERS
+  ============================================================================
+  Real-world implications and applications
+  Why should someone care about this?
+*/}
+
+## Why It Matters
+
+This concept isn't just theoretical - it's fundamental to:
+
+- **Quantum Computing**: [How it's used in quantum algorithms or hardware]
+- **Cryptography**: [Security implications if applicable]
+- **Technology**: [Real-world applications or future tech]
+
+For example, [concrete example or application that readers can relate to].
+
+{/*
+  ============================================================================
+  THE PHYSICS (OPTIONAL)
+  ============================================================================
+  Key equation with clear explanation
+  Only include if it adds intuition, not for completeness
+*/}
+
+## The Physics Behind It
+
+### The Key Equation
+
+The mathematical expression that captures this idea is:
+
+$$
+[\text{your key equation here}]
+$$
+
+What does this mean?
+
+- $[symbol]$: [Plain language explanation]
+- $[symbol]$: [Plain language explanation]
+- $[symbol]$: [Plain language explanation]
+
+The equation tells us that [intuitive interpretation of the math].
+
+### Simple Example
+
+Let's see this in action with a concrete case:
+
+Suppose we have [simple scenario]. Then:
+
+$$
+[\text{equation applied to scenario}]
+$$
+
+This means [interpret the result].
+
+{/*
+  ============================================================================
+  VISUAL INTUITION (OPTIONAL)
+  ============================================================================
+  Diagrams, analogies, or simple illustrations
+  If you have images, place them in /public/images/ and reference them here
+*/}
+
+## Visualizing the Concept
+
+Think of it this way:
+
+1. **Classical case**: [Describe the familiar, classical behavior]
+2. **Quantum case**: [Describe how quantum mechanics changes things]
+3. **The difference**: [Highlight what makes quantum special]
+
+You can visualize this as [analogy or mental model].
+
+{/*
+  ============================================================================
+  COMMON MISCONCEPTIONS (OPTIONAL)
+  ============================================================================
+  Address common confusions
+*/}
+
+## Common Misconceptions
+
+<Red>**Myth**: [Common misunderstanding]</Red>
+
+<Green>**Reality**: [Correct understanding]</Green>
+
+Why people think this: [Explain the source of confusion]
+
+<Red>**Myth**: [Another common misunderstanding]</Red>
+
+<Green>**Reality**: [Correct understanding]</Green>
+
+{/*
+  ============================================================================
+  EXAMPLE OR APPLICATION
+  ============================================================================
+  Concrete illustration of the concept
+*/}
+
+## A Concrete Example
+
+Let's see this principle in action:
+
+**Scenario**: [Describe a specific setup or problem]
+
+**What happens**: [Walk through what occurs step-by-step]
+
+1. Initially, [starting state]
+2. Then, [what changes]
+3. Finally, [end result]
+
+**The surprising part**: [Highlight the counterintuitive or cool aspect]
+
+{/*
+  ============================================================================
+  CODE SNIPPET (OPTIONAL)
+  ============================================================================
+  Only if it helps build intuition!
+  Keep it very short and well-commented
+*/}
+
+## Trying It Yourself
+
+Want to see this in code? Here's a minimal example:
+
+```python
+from qiskit import QuantumCircuit
+from qiskit_aer import AerSimulator
+
+# Create a simple circuit demonstrating the concept
+qc = QuantumCircuit(2)
+
+# Apply operations
+qc.h(0)  # Creates superposition
+qc.cx(0, 1)  # Creates entanglement
+
+# Visualize
+print(qc.draw('text'))
+
+# Run simulation
+simulator = AerSimulator()
+job = simulator.run(qc, shots=100)
+result = job.result()
+counts = result.get_counts()
+print(f"Results: {counts}")
+```
+
+**What you'll see**: [Explain the output and what it demonstrates]
+
+{/*
+  ============================================================================
+  GOING DEEPER (OPTIONAL)
+  ============================================================================
+  Pointers to more rigorous treatments for interested readers
+*/}
+
+## Want to Go Deeper?
+
+If you want the full mathematical treatment:
+
+- **Textbook**: Nielsen & Chuang's "Quantum Computation and Quantum Information", Chapter X
+- **Papers**: [Seminal paper if applicable]
+- **Online**: [Good video lecture or tutorial]
+
+Key topics to explore next:
+1. [Related concept 1]
+2. [Related concept 2]
+3. [Related concept 3]
+
+{/*
+  ============================================================================
+  TAKEAWAY
+  ============================================================================
+  Main point in 1-2 sentences
+  What should readers remember?
+*/}
+
+## The Takeaway
+
+<Blue>Remember this:</Blue> [Summarize the core insight in one clear sentence].
+
+This is why [quantum concept] is <Purple>fundamentally different</Purple> from our everyday experience, and why it enables [powerful capability or application].
+
+---
+
+</BlogLayout>

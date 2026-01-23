@@ -1,8 +1,9 @@
 {
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "npm run gen-posts && next dev --webpack",
+    "build": "npm run gen-posts && next build --webpack",
+    "gen-posts": "node scripts/generate-blog-posts.js",
     "start": "next start",
     "delete": "rm -rf app/n"
   },
@@ -14,9 +15,9 @@
     "@types/mdx": "^2.0.13",
     "@vercel/analytics": "^1.4.1",
     "@vercel/speed-insights": "^1.2.0",
-    "framer-motion": "^11.13.1",
+    "gray-matter": "^4.0.3",
     "katex": "^0.16.23",
-    "next": "^15.0.3",
+    "next": "^16.1.4",
     "postgres": "^3.4.5",
     "react": "19.0.0",
     "react-dom": "19.0.0",

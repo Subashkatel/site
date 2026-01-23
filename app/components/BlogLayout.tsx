@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import 'katex/dist/katex.min.css'
 import { TableOfContents } from './TableOfContents'
 
 interface BlogLayoutProps {

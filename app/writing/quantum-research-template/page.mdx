@@ -1,0 +1,463 @@
+import { BlogLayout } from '../../components/BlogLayout'
+
+export const metadata = {
+  title: 'Template: Quantum Research Deep Dive',
+  description: 'Template for detailed technical posts on quantum algorithms, circuits, and error correction',
+  date: '2025-01-22',
+  published: false,
+  hidden: true, // Hide from listings
+}
+
+<BlogLayout date={metadata.date}>
+
+{/*
+  ============================================================================
+  QUANTUM RESEARCH DEEP DIVE TEMPLATE
+  ============================================================================
+
+  PURPOSE: Detailed technical posts on quantum algorithms, circuits, error correction
+  TARGET LENGTH: 2000-4000 words
+
+  FEATURES:
+  - Heavy LaTeX support (kets, bras, operators)
+  - Code blocks (Python, Qiskit, quantum circuits)
+  - Multi-column equations
+  - Theorem/proof sections
+  - References/citations
+
+  INSTRUCTIONS:
+  1. Copy this entire folder to a new folder: /app/writing/[your-slug]/
+  2. Replace [your-slug] with your post's URL name (e.g., "grovers-algorithm")
+  3. Update the metadata above (title, description, date)
+  4. Set published: true when ready to publish
+  5. Remove hidden: true to show in blog listings
+  6. Delete or comment out sections you don't need
+  7. Run `npm run gen-posts` to register your post
+
+  ============================================================================
+*/}
+
+# Your Quantum Research Title Here
+
+*A subtitle explaining the main contribution or focus (optional)*
+
+{/*
+  ============================================================================
+  ABSTRACT
+  ============================================================================
+  Brief 2-3 sentence overview of the research/topic
+  What problem does it solve? What's the main result?
+*/}
+
+## Abstract
+
+In this work, we present [your contribution]. We demonstrate that [key finding] and show [main result]. Our implementation achieves [performance metric] on [benchmark/dataset].
+
+{/*
+  ============================================================================
+  INTRODUCTION
+  ============================================================================
+  - Motivation: Why is this problem important?
+  - Context: What existing work exists?
+  - Contribution: What does this post add?
+  - Structure: What will the reader learn?
+*/}
+
+## Introduction
+
+Quantum computing promises to revolutionize fields from cryptography to drug discovery. However, [describe the challenge or problem your post addresses].
+
+In this post, we explore [topic] with a focus on [specific aspect]. We will:
+
+1. Develop the mathematical foundation for [concept]
+2. Implement [algorithm/circuit] using Qiskit
+3. Analyze performance on [problem/benchmark]
+4. Discuss implications for [application domain]
+
+**Prerequisites**: This post assumes familiarity with linear algebra, quantum mechanics, and Python programming.
+
+{/*
+  ============================================================================
+  MATHEMATICAL BACKGROUND
+  ============================================================================
+  Theory with heavy LaTeX
+  This is where you explain the quantum mechanics and mathematics
+*/}
+
+## Mathematical Background
+
+### Quantum States and Dirac Notation
+
+A quantum state is represented as a unit vector in a complex Hilbert space $\mathcal{H}$. We denote states using **Dirac notation**:
+
+- **Ket vector**: $|\psi\rangle \in \mathcal{H}$ represents a quantum state
+- **Bra vector**: $\langle\phi| \in \mathcal{H}^*$ is the dual vector
+- **Inner product**: $\langle\phi|\psi\rangle \in \mathbb{C}$ gives the overlap between states
+
+For a qubit (2-level quantum system), the computational basis states are:
+
+$$
+|0\rangle = \begin{pmatrix} 1 \\ 0 \end{pmatrix}, \quad |1\rangle = \begin{pmatrix} 0 \\ 1 \end{pmatrix}
+$$
+
+A general qubit state is a superposition:
+
+$$
+|\psi\rangle = \alpha|0\rangle + \beta|1\rangle
+$$
+
+where $\alpha, \beta \in \mathbb{C}$ and $|\alpha|^2 + |\beta|^2 = 1$ (normalization condition).
+
+### Quantum Gates and Operators
+
+Quantum evolution is governed by **unitary operators** $\hat{U}$ that preserve inner products:
+
+$$
+\hat{U}^\dagger \hat{U} = \hat{U}\hat{U}^\dagger = \hat{I}
+$$
+
+Common single-qubit gates include:
+
+**Hadamard gate** (creates superposition):
+$$
+\hat{H} = \frac{1}{\sqrt{2}}\begin{pmatrix} 1 & 1 \\ 1 & -1 \end{pmatrix}
+$$
+
+**Pauli gates** (rotations and flips):
+$$
+\hat{X} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}, \quad
+\hat{Y} = \begin{pmatrix} 0 & -i \\ i & 0 \end{pmatrix}, \quad
+\hat{Z} = \begin{pmatrix} 1 & 0 \\ 0 & -1 \end{pmatrix}
+$$
+
+**Phase gate** ($S$-gate):
+$$
+\hat{S} = \begin{pmatrix} 1 & 0 \\ 0 & i \end{pmatrix}, \quad
+\hat{T} = \begin{pmatrix} 1 & 0 \\ 0 & e^{i\pi/4} \end{pmatrix}
+$$
+
+### Multi-Qubit Systems and Entanglement
+
+For $n$ qubits, the Hilbert space is the tensor product $\mathcal{H}^{\otimes n} = \mathbb{C}^{2^n}$. States are written as:
+
+$$
+|\psi\rangle = \sum_{x \in \{0,1\}^n} \alpha_x |x\rangle
+$$
+
+where $|x\rangle = |x_1\rangle \otimes |x_2\rangle \otimes \cdots \otimes |x_n\rangle$ and $\sum_x |\alpha_x|^2 = 1$.
+
+The **CNOT gate** (controlled-NOT) creates entanglement:
+
+$$
+\text{CNOT} = |0\rangle\langle0| \otimes \hat{I} + |1\rangle\langle1| \otimes \hat{X}
+$$
+
+Matrix form:
+$$
+\text{CNOT} = \begin{pmatrix}
+1 & 0 & 0 & 0 \\
+0 & 1 & 0 & 0 \\
+0 & 0 & 0 & 1 \\
+0 & 0 & 1 & 0
+\end{pmatrix}
+$$
+
+**Bell states** are maximally entangled 2-qubit states:
+
+$$
+\begin{aligned}
+|\Phi^+\rangle &= \frac{1}{\sqrt{2}}(|00\rangle + |11\rangle) \\
+|\Phi^-\rangle &= \frac{1}{\sqrt{2}}(|00\rangle - |11\rangle) \\
+|\Psi^+\rangle &= \frac{1}{\sqrt{2}}(|01\rangle + |10\rangle) \\
+|\Psi^-\rangle &= \frac{1}{\sqrt{2}}(|01\rangle - |10\rangle)
+\end{aligned}
+$$
+
+### Density Matrices and Mixed States
+
+Pure states $|\psi\rangle$ are represented by density matrices:
+
+$$
+\hat{\rho} = |\psi\rangle\langle\psi|
+$$
+
+For mixed states (statistical ensembles), the density matrix is:
+
+$$
+\hat{\rho} = \sum_i p_i |\psi_i\rangle\langle\psi_i|
+$$
+
+where $p_i \geq 0$ and $\sum_i p_i = 1$. Properties:
+- $\hat{\rho}$ is Hermitian: $\hat{\rho}^\dagger = \hat{\rho}$
+- $\hat{\rho}$ is positive semidefinite: $\langle\phi|\hat{\rho}|\phi\rangle \geq 0$ for all $|\phi\rangle$
+- $\text{Tr}(\hat{\rho}) = 1$ (normalization)
+
+{/*
+  ============================================================================
+  ALGORITHM DESCRIPTION
+  ============================================================================
+  Describe the quantum algorithm or circuit in detail
+*/}
+
+## The Algorithm
+
+### Circuit Structure
+
+Describe the quantum circuit here. Use text-based circuit diagrams or reference figures.
+
+Example quantum teleportation circuit:
+
+```
+Alice's qubits    Bob's qubit
+    |ψ⟩              |0⟩
+     |                |
+    [H] ──●─────[X]───●───[X]
+          |          |     |
+    |0⟩──[H]───●─[M]─|─[M]─[Z]
+              |
+```
+
+### Step-by-Step Procedure
+
+1. **Initialization**: Prepare qubits in initial state
+2. **Superposition**: Apply Hadamard gates
+3. **Entanglement**: Use CNOT gates
+4. **Phase manipulation**: Apply phase gates if needed
+5. **Measurement**: Measure in computational basis
+
+### Complexity Analysis
+
+- **Time complexity**: $O(n^k)$ for $n$ qubits
+- **Space complexity**: $2^n$ amplitudes (exponential!)
+- **Gate count**: $\Theta(...)$ gates required
+
+{/*
+  ============================================================================
+  IMPLEMENTATION
+  ============================================================================
+  Code examples with explanations (Python, Qiskit)
+*/}
+
+## Implementation
+
+### Setting Up Qiskit
+
+First, install required packages:
+
+```bash
+pip install qiskit qiskit-aer matplotlib
+```
+
+Import necessary libraries:
+
+```python
+from qiskit import QuantumCircuit, QuantumRegister, ClassicalRegister
+from qiskit_aer import AerSimulator
+from qiskit.visualization import plot_histogram, plot_bloch_multivector
+import numpy as np
+import matplotlib.pyplot as plt
+```
+
+### Building the Quantum Circuit
+
+Here's a complete implementation:
+
+```python
+def create_quantum_algorithm(n_qubits: int) -> QuantumCircuit:
+    """
+    Create a quantum circuit for [your algorithm].
+
+    Args:
+        n_qubits: Number of qubits in the circuit
+
+    Returns:
+        QuantumCircuit ready for execution
+    """
+    # Initialize quantum and classical registers
+    qreg = QuantumRegister(n_qubits, 'q')
+    creg = ClassicalRegister(n_qubits, 'c')
+    qc = QuantumCircuit(qreg, creg)
+
+    # Step 1: Initialize superposition
+    for qubit in range(n_qubits):
+        qc.h(qubit)
+
+    # Step 2: Apply algorithm-specific gates
+    # ... your quantum operations here ...
+
+    # Step 3: Measurement
+    qc.measure(qreg, creg)
+
+    return qc
+
+# Create and visualize the circuit
+circuit = create_quantum_algorithm(3)
+print(circuit.draw('text'))
+```
+
+### Running Simulations
+
+Execute the circuit on a quantum simulator:
+
+```python
+# Use Aer simulator
+simulator = AerSimulator()
+
+# Run the circuit
+job = simulator.run(circuit, shots=1024)
+result = job.result()
+
+# Get measurement counts
+counts = result.get_counts(circuit)
+
+# Visualize results
+plot_histogram(counts)
+plt.title('Measurement Results')
+plt.show()
+```
+
+### State Vector Analysis
+
+For small circuits, we can inspect the full quantum state:
+
+```python
+from qiskit.quantum_info import Statevector
+
+# Remove measurements to get final state
+qc_statevector = circuit.remove_final_measurements(inplace=False)
+
+# Get the statevector
+statevector = Statevector.from_instruction(qc_statevector)
+
+# Print state
+print("Final quantum state:")
+print(statevector)
+
+# Visualize on Bloch sphere (for single qubit)
+plot_bloch_multivector(statevector)
+plt.show()
+```
+
+{/*
+  ============================================================================
+  RESULTS
+  ============================================================================
+  Experimental results, graphs, performance analysis
+*/}
+
+## Results and Analysis
+
+### Experimental Setup
+
+We ran the algorithm on:
+- **Simulator**: Qiskit Aer (noiseless and noisy models)
+- **Hardware**: IBM Quantum devices (if applicable)
+- **Parameters**: [List key parameters]
+
+### Performance Metrics
+
+Key results:
+
+| Metric | Value | Notes |
+|--------|-------|-------|
+| Success probability | 95.3% | On ideal simulator |
+| Circuit depth | 42 | Number of time steps |
+| Gate count | 127 | Total quantum gates |
+| Runtime | 1.2ms | On simulator |
+
+### Noise Analysis
+
+On real hardware with noise, performance degrades:
+
+```python
+# Example: Analyzing noise impact
+from qiskit_aer.noise import NoiseModel
+from qiskit.providers.fake_provider import FakeMontreal
+
+# Get noise model from real device
+backend = FakeMontreal()
+noise_model = NoiseModel.from_backend(backend)
+
+# Run with noise
+noisy_job = simulator.run(circuit, shots=1024, noise_model=noise_model)
+noisy_counts = noisy_job.result().get_counts()
+
+# Compare ideal vs noisy
+print(f"Ideal fidelity: {ideal_fidelity:.3f}")
+print(f"Noisy fidelity: {noisy_fidelity:.3f}")
+```
+
+### Comparison with Classical Methods
+
+How does this quantum algorithm compare to classical approaches?
+
+- **Speedup**: Quantum provides $O(...)$ vs classical $O(...)$
+- **Accuracy**: Comparable within error bounds
+- **Scalability**: Quantum advantage appears at $n > ...$
+
+{/*
+  ============================================================================
+  DISCUSSION
+  ============================================================================
+  Implications, limitations, future work
+*/}
+
+## Discussion
+
+### Key Insights
+
+1. **Quantum advantage**: The algorithm demonstrates [specific advantage]
+2. **Practical challenges**: Near-term devices face [limitations]
+3. **Trade-offs**: We observe trade-offs between [X] and [Y]
+
+### Limitations
+
+- **Qubit count**: Requires $n$ qubits, currently challenging
+- **Error rates**: Gate fidelity must exceed [threshold]
+- **Coherence time**: Algorithm must complete within $T_2$ time
+
+### Future Directions
+
+Promising avenues for further research:
+
+- **Error mitigation**: Explore techniques like zero-noise extrapolation
+- **Variational approaches**: Hybrid quantum-classical algorithms
+- **Application domains**: Extend to [specific problems]
+
+{/*
+  ============================================================================
+  CONCLUSION
+  ============================================================================
+  Summarize key takeaways
+*/}
+
+## Conclusion
+
+We presented [main contribution]. Key results include:
+
+- **Theoretical result**: [Describe main theorem or finding]
+- **Implementation**: Working Qiskit code achieving [performance]
+- **Practical insights**: [Key lessons for quantum computing practitioners]
+
+This work demonstrates that [broader impact or significance]. The code is available at [GitHub link if applicable].
+
+{/*
+  ============================================================================
+  REFERENCES
+  ============================================================================
+  Academic citations and further reading
+*/}
+
+## References
+
+1. Nielsen, M. A., & Chuang, I. L. (2010). *Quantum Computation and Quantum Information*. Cambridge University Press.
+
+2. Preskill, J. (2018). "Quantum Computing in the NISQ era and beyond". *Quantum*, 2, 79.
+
+3. Qiskit Development Team. (2024). *Qiskit Documentation*. [https://qiskit.org/documentation/](https://qiskit.org/documentation/)
+
+4. [Add your specific references here]
+
+---
+
+</BlogLayout>

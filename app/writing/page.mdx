@@ -10,7 +10,7 @@ export const metadata = {
 <div id="wrapper">
   <div id="left" className="container">
     <div className="flex flex-col">
-      <h1 style={{ fontSize: '2rem', marginBottom: '1rem' }}>Writing</h1>
+      <h1 className="text-3xl mb-4">Writing</h1>
       <p><Link href="/">← Back to home</Link></p>
     </div>
   </div>
@@ -23,7 +23,7 @@ export const metadata = {
     <BlogPosts posts={blogPosts} showOnlyFeatured={false} />
   </div>
 
-  <Link href="/feed.xml" title="Subscribe via RSS" className="hidden md:block" style={{ position: 'fixed', bottom: '2rem', right: '2rem', zIndex: 50 }}>
+  <Link href="/feed.xml" title="Subscribe via RSS" className="hidden md:block fixed bottom-8 right-8 z-50">
     <img src="/images/rssfeed2.png" alt="RSS Feed" width="32" height="32" className="hover:opacity-70 transition-opacity" />
   </Link>
 </div>
