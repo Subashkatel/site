@@ -17,17 +17,17 @@ export const blogPosts: BlogPost[] = [
     "description": "How I use spaced repetition to retain complex research concepts",
     "slug": "anki-for-researchers",
     "date": "2025-01-15",
-    "published": false,
+    "published": true,
     "featured": false,
-    "hidden": true
+    "hidden": false
   },
   {
     "title": "Quantum Entanglement and Bell States: A Mathematical Journey",
     "description": "Exploring quantum entanglement through rigorous mathematics and hands-on implementations",
     "slug": "quantum-entanglement-bell-states",
     "date": "2025-01-12",
-    "published": false,
+    "published": true,
     "featured": false,
-    "hidden": true
+    "hidden": false
   }
 ];
