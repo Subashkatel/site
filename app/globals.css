@@ -1,7 +1,35 @@
 @import 'tailwindcss';
 
+/* ET Book font - the same font used by Edward Tufte */
+@font-face {
+  font-family: 'et-book';
+  src: url('/fonts/et-book/et-book-roman-line-figures.woff2') format('woff2'),
+       url('/fonts/et-book/et-book-roman-line-figures.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'et-book';
+  src: url('/fonts/et-book/et-book-display-italic-old-style-figures.woff2') format('woff2'),
+       url('/fonts/et-book/et-book-display-italic-old-style-figures.woff') format('woff');
+  font-weight: normal;
+  font-style: italic;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'et-book';
+  src: url('/fonts/et-book/et-book-bold-line-figures.woff2') format('woff2'),
+       url('/fonts/et-book/et-book-bold-line-figures.woff') format('woff');
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
+}
+
 @theme {
-  --font-family-sans: 'Inter', sans-serif;
+  --font-family-serif: 'et-book', 'Palatino', 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', 'Georgia', serif;
 }
 
 :root {
@@ -13,19 +41,27 @@
   --sh-jsxliterals: #7aa2f7;
   --sh-property: #73daca;
   --sh-entity: #e0af68;
+  --background-color: #fffff8;
+  --text-color: #111;
+  --accent-color: #a00000;
 }
 
 html {
   min-width: 360px;
   scrollbar-gutter: stable;
-  font-family: var(--font-family-sans);
+  font-family: var(--font-family-serif);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   text-rendering: optimizeLegibility;
-  font-family: var(--font-family-sans);
-  color: #333;
+  font-family: var(--font-family-serif);
+  background-color: var(--background-color);
+  color: var(--text-color);
   margin: 0;
+  font-size: 1.1rem;
+  line-height: 1.6;
 }
 
 h1,
@@ -35,14 +71,14 @@ h4 {
   text-wrap: balance;
   margin: 0 0 0.5rem -0.1rem;
   line-height: 1;
-  color: #111;
+  color: var(--text-color);
   text-rendering: optimizeLegibility;
-  font-weight: 800;  /* increased from bold to 800 */
+  font-weight: 400;  /* Tufte-style light weight */
 }
 
 h1 {
-  font-size: 2.5rem;
-  margin: 0 0 0.5rem -0.1rem;  /* reduced from 1rem to 0.5rem */
+  font-size: 2.8rem;
+  margin: 0 0 0.5rem -0.1rem;
   line-height: 1.2;
 }
 
@@ -55,10 +91,10 @@ h1 {
 }
 
 h2 {
-  font-size: 1.25rem;
+  font-size: 1.5rem;
   margin-bottom: 0.75rem;
-  font-weight: 800;
-  line-height: 1;
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 h2:first-child {
@@ -126,6 +162,10 @@ hr {
 .container img {
   margin: 0 auto;
   display: block;
+}
+
+img {
+  background-color: transparent;
 }
 
 table {
@@ -373,9 +413,9 @@ p {
   border-left: 10px solid #3193cc;
   border-bottom: 1px solid #3193cc;
   border-right: 1px solid #3193cc;
-  background-color: #fbfeff;
+  background-color: var(--background-color);
   padding: 0.4rem;
-  text-align: left;  
+  text-align: left;
 }
 
 .pub {
@@ -387,11 +427,11 @@ p {
 
 .title {
   font-weight: bold;
-  font-size: 1rem;
+  font-size: 1.1rem;
 }
 
 .authors {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
 }
 
 .distinguished {
@@ -401,11 +441,11 @@ p {
 }
 
 a:link {
-  color: #276fa0;
+  color: var(--accent-color);
 }
 
 a:visited {
-  color: #834fbb;
+  color: var(--accent-color);
 }
 
 /* Center layout for non-home pages */
@@ -439,13 +479,13 @@ a:visited {
   border-radius: 8px;
   text-decoration: none;
   color: inherit;
-  background-color: white;
+  background-color: var(--background-color);
   transition: all 0.2s ease;
 }
 
 .writing-card.active:hover {
-  border-color: #3193cc;
-  box-shadow: 0 2px 8px rgba(49, 147, 204, 0.15);
+  border-color: var(--accent-color);
+  box-shadow: 0 2px 8px rgba(160, 0, 0, 0.15);
 }
 
 .writing-card.upcoming {
@@ -455,21 +495,21 @@ a:visited {
 
 .writing-card .card-title {
   font-weight: 600;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
   margin-bottom: 0.5rem;
   color: #333 !important;
 }
 
 .writing-card .card-description {
-  font-size: 0.95rem;
+  font-size: 1.05rem;
   color: #666 !important;
   line-height: 1.5;
   margin-bottom: 0.5rem;
 }
 
 .writing-card .card-link {
-  font-size: 0.9rem;
-  color: #3193cc !important;
+  font-size: 1rem;
+  color: var(--accent-color) !important;
   font-weight: 500;
 }
 

@@ -32,19 +32,21 @@ export function Publications({ publications, showOnlyFeatured = false }: Publica
             <a href={pub.url}>[paper]</a>
           </p>
           {pub.image && (
-            <div style={{ 
-              flexShrink: 0, 
-              width: '100px', 
+            <div style={{
+              flexShrink: 0,
+              width: '100px',
               height: '100px',
               position: 'relative',
               overflow: 'hidden',
-              borderRadius: '8px'
+              borderRadius: '8px',
+              backgroundColor: '#fffff8'
             }}>
               <Image
                 src={pub.image}
                 alt={pub.title}
                 fill
-                style={{ objectFit: 'cover' }}
+                unoptimized
+                style={{ objectFit: 'contain' }}
               />
             </div>
           )}

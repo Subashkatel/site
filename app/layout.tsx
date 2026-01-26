@@ -63,7 +63,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="antialiased tracking-tight">
-        <div className="min-h-screen bg-white text-gray-900">
+        <div className="min-h-screen" style={{ backgroundColor: '#fffff8' }}>
           {children}
           <Footer />
         </div>
@@ -90,7 +90,7 @@ function Footer() {
             key={link.name}
             href={link.url}
             {...(link.external && { target: '_blank', rel: 'noopener noreferrer' })}
-            className="text-gray-400 hover:text-blue-500 transition-colors duration-200"
+            className="text-gray-400 hover:text-[#a00000] transition-colors duration-200"
           >
             {link.name}
           </a>
