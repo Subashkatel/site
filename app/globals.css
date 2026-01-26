@@ -372,7 +372,7 @@ input[type='email'] {
   }
   
   #left .relative {
-    margin: 0; /* Remove auto margins */
+    margin: 0 0 0.75rem 0; /* Small bottom margin for spacing from name */
     width: 160px; /* Fixed width */
     height: 200px !important; /* Fixed height */
   }
