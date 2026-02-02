@@ -28,4 +28,14 @@ export const publications: Publication[] = [
     image: "/images/carbon_foot.png",
     featured: true,
   },
+    {
+    title: "Spatially Aware Linear Transformer (SAL-T) for Particle Jet Tagging",
+    authors: ["Aaron Wang, Zihan Zhao, Subash Katel, Vivekanand Gyanchand Sahu, Elham E Khoda, Abhijith Gandrakota, Jennifer Ngadiuba, Richard Cavanaugh, Javier Duarte"],
+    venue: "ArXiv",
+    year: 2025,
+    url: "https://arxiv.org/abs/2510.23641",
+    image: "",
+    featured: false,
+  },
+
 ];
