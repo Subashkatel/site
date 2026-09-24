@@ -1,13 +1,9 @@
-export default function robots() {
+import type { MetadataRoute } from 'next';
+import { site } from '@/lib/site';
+
+export default function robots(): MetadataRoute.Robots {
   return {
-    rules: [
-      {
-        userAgent: '*',
-        allow: '/',
-        disallow: ['/api/', '/admin/', '/cv/'],
-      },
-    ],
-    sitemap: 'https://subashkatel.com/sitemap.xml',
-    host: 'https://subashkatel.com',
-  }
+    rules: { userAgent: '*' },
+    sitemap: `${site.url}/sitemap.xml`,
+  };
 }

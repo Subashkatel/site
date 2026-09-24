@@ -1,598 +1,730 @@
-@import 'tailwindcss';
-
-/* ET Book font - the same font used by Edward Tufte */
-@font-face {
-  font-family: 'et-book';
-  src: url('/fonts/et-book/et-book-roman-line-figures.woff2') format('woff2'),
-       url('/fonts/et-book/et-book-roman-line-figures.woff') format('woff');
-  font-weight: normal;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'et-book';
-  src: url('/fonts/et-book/et-book-display-italic-old-style-figures.woff2') format('woff2'),
-       url('/fonts/et-book/et-book-display-italic-old-style-figures.woff') format('woff');
-  font-weight: normal;
-  font-style: italic;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'et-book';
-  src: url('/fonts/et-book/et-book-bold-line-figures.woff2') format('woff2'),
-       url('/fonts/et-book/et-book-bold-line-figures.woff') format('woff');
-  font-weight: bold;
-  font-style: normal;
-  font-display: swap;
-}
-
-@theme {
-  --font-family-serif: 'et-book', 'Palatino', 'Palatino Linotype', 'Palatino LT STD', 'Book Antiqua', 'Georgia', serif;
-}
+/* ─── Colours and measurements ─────────────────────────────────────── */
 
 :root {
-  --sh-class: #7aa2f7;
-  --sh-sign: #89ddff;
-  --sh-string: #9ece6a;
-  --sh-keyword: #bb9af7;
-  --sh-comment: #565f89;
-  --sh-jsxliterals: #7aa2f7;
-  --sh-property: #73daca;
-  --sh-entity: #e0af68;
-  --background-color: #fffff8;
-  --text-color: #111;
-  --accent-color: #a00000;
+  --paper: #FAF8F3;
+  --ink: #1B1A17;
+  --grey: #8B8880;
+  --rule: #E2DED4;
+  --trace: #C9C4B6;
+
+  --rail-width: 8.5rem;
+  --gutter: 3rem;
+  --column-width: 33em;
+
+  --serif: var(--font-serif), 'Iowan Old Style', Georgia, serif;
+  --mono: var(--font-mono), ui-monospace, Menlo, monospace;
+
+  color-scheme: light dark;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #16161A;
+    --ink: #E6E3DA;
+    --grey: #84817A;
+    --rule: #2B2B2E;
+    --trace: #3A3A3E;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #16161A;
+  --ink: #E6E3DA;
+  --grey: #84817A;
+  --rule: #2B2B2E;
+  --trace: #3A3A3E;
+}
+
+/* ─── Base ─────────────────────────────────────────────────────────── */
+
+* {
+  box-sizing: border-box;
 }
 
 html {
-  min-width: 360px;
-  scrollbar-gutter: stable;
-  font-family: var(--font-family-serif);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+  background: var(--paper);
 }
 
 body {
-  text-rendering: optimizeLegibility;
-  font-family: var(--font-family-serif);
-  background-color: var(--background-color);
-  color: var(--text-color);
   margin: 0;
-  font-size: 1.1rem;
-  line-height: 1.6;
-}
-
-h1,
-h2,
-h3,
-h4 {
-  text-wrap: balance;
-  margin: 0 0 0.5rem -0.1rem;
-  line-height: 1;
-  color: var(--text-color);
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--serif);
+  font-size: 1.2rem;
+  font-weight: 300;
+  line-height: 1.68;
+  -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-weight: 400;  /* Tufte-style light weight */
-}
-
-h1 {
-  font-size: 2.8rem;
-  margin: 0 0 0.5rem -0.1rem;
-  line-height: 1.2;
-}
-
-@media (min-width: 30rem) {
-  h1 {
-    font-size: 3rem;
-    margin-bottom: 1rem;  /* reduced from 3rem to 1rem */
-    line-height: 1;
-  }
-}
-
-h2 {
-  font-size: 1.5rem;
-  margin-bottom: 0.75rem;
-  font-weight: 400;
-  line-height: 1.2;
-}
-
-h2:first-child {
-  margin-top: 2rem !important;
-}
-
-h2:not(:first-child) {
-  margin-top: 1rem !important;
-}
-
-@media (min-width: 30rem) {
-  h2 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-  
-  h2:not(:first-child) {
-    margin-top: 1.25rem !important;
-  }
-}
-
-h3, h4, h5, h6 {
-  margin-top: 1.5rem;
-  font-size: 1rem;
-}
-
-p, ul, ol, dl, table, pre, blockquote {
-  margin-top: 0;
-  margin-bottom: 1rem;
-}
-
-ul, ol {
-  padding-left: 1.5rem;
-}
-
-dd {
-  margin-left: 1.5rem;
-}
-
-blockquote {
-  margin-left: 0;
-  margin-right: 0;
-  padding: .5rem 1rem;
-  border-left: .25rem solid #ccc;
-  color: #666;
-}
-
-blockquote p:last-child {
-  margin-bottom: 0;
-}
-
-hr {
-  color: var(--color-gray-200);
-  border: none;
-  margin: 1.5rem 0;
-  border-bottom: 1px solid #ccc;
-  position: relative;
-  top: -1px;
-}
-
-.container img, .container iframe {
-  max-width: 100%;
-}
-
-.container img {
-  margin: 0 auto;
-  display: block;
-}
-
-img {
-  background-color: transparent;
-}
-
-table {
-  display: block;
-  max-width: fit-content;
-  overflow-x: auto;
-  white-space: nowrap;
-}
-
-pre {
-  background-color: #16161e;
-  border-radius: 0.5rem;
-  overflow-x: auto;
-  padding: 1rem;
-  margin: 1.5rem 0;
-  line-height: 1;
-}
-
-pre::-webkit-scrollbar {
-  display: none;
-}
-
-pre {
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-
-code {
-  font-family: 'Menlo', 'Monaco', 'Courier New', monospace;
-  font-size: 14px;
-  padding: 0.2em 0.4em;
-  border-radius: 0.3em;
-  background-color: var(--color-gray-100);
-}
-
-pre code {
-  background-color: transparent;
-  padding: 0;
-  border: none;
-  font-size: 14px;
-  line-height: 1.5;
-}
-
-pre code > span .sh__token--identifier {
-  color: white !important;
-}
-
-code:not(pre code) span {
-  font-weight: 500;
-  color: black !important;
-}
-
-pre code span {
-  font-weight: 500;
-}
-
-input[type='text'],
-input[type='email'] {
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  appearance: none;
-}
-
-.transition-element {
-  margin: 0;
-  padding: 0;
-}
-
-.group:hover .group-hover\:-translate-y-full,
-.group:hover .group-hover\:translate-y-0 {
-  transform: none;
-  transition: none;
-}
-
-@keyframes fade-out {
-  0% {
-    transform: translateY(0) translateX(-0.2px);
-    opacity: 1;
-    font-weight: 500;
-  }
-
-  20% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0.5;
-  }
-
-  40% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0.3;
-  }
-
-  60% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0.2;
-  }
-
-  100% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0;
-  }
-}
-
-@keyframes fade-in {
-  0% {
-    opacity: 0;
-  }
-
-  40% {
-    opacity: 0.6;
-  }
-
-  60% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes fade-in-up {
-  0% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0;
-  }
-
-  20% {
-    transform: translateY(24px) translateX(-0.2px);
-    opacity: 0.5;
-  }
-
-  80% {
-    transform: translateY(0) translateX(-0.2px);
-    opacity: 0.7;
-  }
-
-  100% {
-    transform: translateY(0) translateX(-0.2px);
-    opacity: 1;
-  }
-}
-
-@supports (view-transition-name: none) {
-  .fade-in {
-    animation: fade-in 0.8s ease-in-out forwards;
-    opacity: 0;
-  }
-}
-
-#wrapper {
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding: 2rem;
-  display: flex;
-  justify-content: center;
-}
-
-#left, #right {
-  display: inline-block;
-  vertical-align: top;
-  text-align: left;
-}
-
-#left {
-  width: 14rem;
-  flex-shrink: 0;
-  padding-bottom: 2rem;
-  padding-right: 5rem;
-}
-
-#left p {
-  text-align: left;
-  margin-bottom: 0.5rem;
-  line-height: 1.4;
-}
-
-#right {
-  width: 37.215rem;
-  margin-top: -0.15rem; /* fine-tune alignment with h1 in left column */
-}
-
-#right h2:first-child {
-  margin-top: 0 !important; /* remove top margin from first h2 to align with name */
-  line-height: 1; /* match h1 line-height */
-}
-
-@media (max-width: 768px) {
-  #wrapper {
-    flex-direction: column;
-    padding: 2rem 1rem;
-    gap: 1rem;
-  }
-  
-  #left, #right {
-    width: 100%;
-    padding-right: 0;
-    padding-left: 0;
-  }
-  
-  #left {
-    position: static;
-    padding: 0;
-  }
-  
-  #left .relative {
-    margin: 0 0 0.75rem 0; /* Small bottom margin for spacing from name */
-    width: 160px; /* Fixed width */
-    height: 200px !important; /* Fixed height */
-  }
-  
-  /* Hide Resources section on mobile */
-  #left > div > div:last-child {
-    display: none;
-  }
-  
-  #right {
-    margin-top: 0;
-  }
-}
-
-@media print {
-  html {
-    font-family: georgia, serif;
-    font-size: 14px;
-  }
 }
 
 p {
-  text-align: justify;
+  margin: 0 0 1.3em;
 }
 
-/* Publication styles */
-.rows {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-  text-align: left;  
+a {
+  color: var(--grey);
+  text-decoration: none;
+  border-bottom: 1px solid var(--rule);
+}
+
+a:hover {
+  color: var(--ink);
+  border-bottom-color: var(--grey);
+}
+
+a:focus-visible {
+  outline: 1.5px solid var(--ink);
+  outline-offset: 3px;
+}
+
+/* Dates and counts. The mono face is used for numerals and nothing else. */
+.numerals {
+  font-family: var(--mono);
+  font-size: .76em;
+  font-style: normal;
+  letter-spacing: .01em;
+}
+
+/* ─── Page frame: a left rail and a text column ────────────────────── */
+
+.page {
+  max-width: calc(var(--rail-width) + var(--gutter) + var(--column-width) + 7rem);
+  margin: 0 auto;
+  padding: 3.2rem 2rem 12rem;
 }
 
 .row {
-  display: flex;
-  border-radius: 4px;
-  border-top: 1px solid #3193cc;
-  border-left: 10px solid #3193cc;
-  border-bottom: 1px solid #3193cc;
-  border-right: 1px solid #3193cc;
-  background-color: var(--background-color);
-  padding: 0.4rem;
-  text-align: left;
+  display: grid;
+  grid-template-columns: var(--rail-width) minmax(0, 1fr);
+  gap: var(--gutter);
 }
 
-.pub {
-  margin: 0;
-  padding: 0;
-  line-height: 1.2;
-  text-align: left;  
+.column {
+  max-width: var(--column-width);
+  min-width: 0;
 }
 
-.title {
-  font-weight: bold;
-  font-size: 1.1rem;
-}
-
-.authors {
-  font-size: 1.05rem;
-}
-
-.distinguished {
-  font-weight: bold;
-  color: green;
-  font-size: 0.9rem;
-}
-
-a:link {
-  color: var(--accent-color);
-}
-
-a:visited {
-  color: var(--accent-color);
-}
-
-/* Center layout for non-home pages */
-.max-w-2xl {
-  width: 100%;
-  max-width: 42rem;
-}
-
-.mx-auto {
-  margin-left: auto;
-  margin-right: auto;
-}
-
-/* Adjust heading margins for centered layout */
-.max-w-2xl h1 {
-  margin-bottom: 2rem;
-}
-
-/* Writing cards */
-.writing-cards {
-  margin-top: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-.writing-card {
-  display: block;
-  padding: 0.75rem;
-  border: 1px solid #ddd;
-  border-radius: 8px;
-  text-decoration: none;
-  color: inherit;
-  background-color: var(--background-color);
-  transition: all 0.2s ease;
-}
-
-.writing-card.active:hover {
-  border-color: var(--accent-color);
-  box-shadow: 0 2px 8px rgba(160, 0, 0, 0.15);
-}
-
-.writing-card.upcoming {
-  opacity: 0.6;
-  cursor: default;
-}
-
-.writing-card .card-title {
-  font-weight: 600;
-  font-size: 1.2rem;
-  margin-bottom: 0.5rem;
-  color: #333 !important;
-}
-
-.writing-card .card-description {
-  font-size: 1.05rem;
-  color: #666 !important;
-  line-height: 1.5;
-  margin-bottom: 0.5rem;
-}
-
-.writing-card .card-link {
-  font-size: 1rem;
-  color: var(--accent-color) !important;
-  font-weight: 500;
-}
-
-.writing-card .card-coming-soon {
-  font-size: 0.85rem;
-  color: #999 !important;
+/* Labels in the rail. The left padding keeps them clear of the line. */
+.rail {
+  padding-top: .55rem;
+  padding-left: 3.4rem;
+  text-align: right;
+  font-size: .83em;
   font-style: italic;
+  line-height: 1.5;
+  color: var(--grey);
 }
 
-/* Footnotes styling */
-.footnotes {
-  margin-top: 3rem;
-  padding-top: 1.5rem;
-  border-top: 1px solid #e5e7eb;
-  font-size: 0.9rem;
-  color: #6b7280;
+/* Sits above the line, which is drawn underneath at z-index 1. */
+nav,
+main {
+  position: relative;
+  z-index: 2;
 }
 
-.footnotes ol {
-  padding-left: 1.5rem;
+.section {
+  margin-bottom: 4.4rem;
 }
 
-.footnotes li {
-  margin-bottom: 0.5rem;
+.section:last-child {
+  margin-bottom: 0;
+}
+
+/* Small grey text at the end of a page. */
+.closing {
+  margin-top: 3.6rem;
+  font-size: .92em;
+  line-height: 1.75;
+  color: var(--grey);
+}
+
+.closing a {
+  font-size: 1.02em;
+}
+
+/* ─── The line (see app/components/Line.tsx) ───────────────────────── */
+
+#line {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  z-index: 1;
+  width: 2.1rem;
+  pointer-events: none;
+  transition: opacity 600ms;
+}
+
+#line canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+/* On a piece of writing the line fades and stops advancing. */
+#line.resting {
+  opacity: .45;
+}
+
+/* ─── Nav ──────────────────────────────────────────────────────────── */
+
+nav {
+  margin-bottom: 5.2rem;
+  font-size: .8em;
+  color: var(--grey);
+}
+
+nav a {
+  border-bottom: none;
+  color: var(--grey);
+}
+
+nav a:hover,
+nav a.current {
+  color: var(--ink);
+}
+
+nav .site-name {
+  margin-right: 1.6rem;
+  font-size: 1.22em;
+  letter-spacing: -.005em;
+  color: var(--ink);
+}
+
+nav .separator {
+  padding: 0 .5rem;
+  opacity: .4;
+}
+
+/* ─── Home ─────────────────────────────────────────────────────────── */
+
+.introduction {
+  margin-bottom: 1.5em;
+  font-size: 1.14em;
+  line-height: 1.5;
+}
+
+.interests {
+  margin: 0 0 1.35em;
+  padding: 0;
+  list-style: none;
+}
+
+.interests li {
+  position: relative;
+  margin-bottom: .6rem;
+  padding-left: 1.35rem;
   line-height: 1.6;
 }
 
-.footnotes li p {
+.interests li:last-child {
+  margin-bottom: 0;
+}
+
+/* A short dash instead of a bullet. The same marker is used in essays. */
+.interests li::before {
+  content: "";
+  position: absolute;
+  top: .72em;
+  left: 0;
+  width: .5rem;
+  height: 1px;
+  background: var(--grey);
+}
+
+.home-photo {
+  max-width: 21em;
+  margin: 2.6rem 0 2.4rem;
+}
+
+.home-photo img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.home-photo figcaption {
+  margin-top: .6rem;
+  font-size: .8em;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--grey);
+}
+
+.contact a {
+  margin-right: 1.1rem;
+}
+
+/* ─── Work ─────────────────────────────────────────────────────────── */
+
+.lede {
+  font-size: .99em;
+  line-height: 1.75;
+}
+
+.topic {
+  margin-bottom: 2.2rem;
+}
+
+.topic-name {
+  display: block;
+  margin-bottom: .3rem;
+  font-weight: 400;
+}
+
+.topic p {
   margin: 0;
+  font-size: .97em;
+  line-height: 1.75;
+}
+
+/* ─── Papers ───────────────────────────────────────────────────────── */
+
+.paper {
+  margin-bottom: 1.5rem;
+  font-size: .97em;
+  line-height: 1.5;
+}
+
+.paper .authors {
+  display: block;
+  margin-top: .2rem;
+  font-size: .88em;
+  color: var(--grey);
+}
+
+.paper .venue {
+  display: block;
+  font-size: .86em;
+  font-style: italic;
+  color: var(--grey);
+}
+
+.paper .links {
+  display: block;
+  margin-top: .3rem;
+  font-size: .82em;
+  color: var(--grey);
+}
+
+.paper .links a {
+  margin-right: .9rem;
+}
+
+/* His own name in the author list. */
+.paper b {
+  font-weight: 500;
+  color: var(--ink);
+}
+
+.equal-contribution-note {
+  margin: .4rem 0 0;
+  font-size: .8em;
+  color: var(--grey);
+}
+
+.closing.follows-note {
+  margin-top: 2rem;
+}
+
+/* ─── Writing index ────────────────────────────────────────────────── */
+
+.intro {
+  margin-bottom: 2.4rem;
+  font-size: .97em;
+  color: var(--grey);
+}
+
+.post-entry {
+  margin-bottom: 1.9rem;
+}
+
+.post-title {
   display: inline;
+  font-size: 1.04em;
 }
 
-.footnotes a {
-  color: #2563eb;
-  text-decoration: none;
+.post-deck {
+  display: block;
+  margin-top: .12rem;
+  font-size: .92em;
+  color: var(--grey);
 }
 
-.footnotes a:hover {
-  text-decoration: underline;
+.post-details {
+  display: block;
+  margin-top: .28rem;
+  font-size: .82em;
+  font-style: italic;
+  color: var(--grey);
 }
 
-/* Footnote references in text */
-sup a {
-  color: #2563eb;
-  text-decoration: none;
-  font-weight: 600;
+.draft-label {
+  margin-left: .6rem;
+  font-size: .72em;
+  font-style: italic;
+  color: var(--grey);
 }
 
-sup a:hover {
-  text-decoration: underline;
+/* ─── Essay: title, deck, lead photo, song ─────────────────────────── */
+
+.essay h1 {
+  margin: 0 0 .55rem;
+  font-size: 2.2em;
+  font-weight: 400;
+  line-height: 1.1;
+  letter-spacing: -.018em;
 }
 
-/* Blog post date styling */
-.post-date {
-  margin-top: 1rem;
-  font-size: 0.9rem;
-  color: #666;
+/* The deck is fenced between two rules, the way the journal entries are. */
+.essay .deck {
+  margin: 1.6rem 0 2.6rem;
+  padding: 1.15rem 0;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-size: 1.02em;
+  font-style: italic;
+  line-height: 1.55;
+  color: var(--grey);
 }
 
-/* Resources page compact spacing */
-.resources-page {
-  margin-top: 0 !important;
+.essay .deck-spacer {
+  height: 1.6rem;
 }
 
-.resources-page h2:first-child {
-  margin-top: 0 !important;
+/* Figures run past the text column on the right, never left into the rail. */
+.essay figure.wide {
+  width: min(41em, calc(100% + 8rem));
+  max-width: none;
+  margin: 0 0 1rem;
 }
 
-.resources-page h2 {
-  margin-top: 0.5rem !important;
-  margin-bottom: 0.75rem !important;
+.essay figure.wide img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
-.resources-page h3 {
-  margin-top: 1.25rem !important;
-  margin-bottom: 0.5rem !important;
+.essay figure.wide figcaption {
+  margin-top: .55rem;
+  font-size: .8em;
+  font-style: italic;
+  line-height: 1.5;
+  color: var(--grey);
 }
 
-.resources-page p {
-  margin-bottom: 0.75rem !important;
+.essay figure.wide.lead-figure {
+  margin-bottom: 2.4rem;
 }
 
-.resources-page ul {
-  margin-top: 0.5rem !important;
-  margin-bottom: 1rem !important;
+/* The song line tucks up under the lead photo's caption. */
+.essay figure.lead-figure + .song {
+  margin-top: -1.4rem;
+}
+
+/* The song is a caption, not a player. */
+.song {
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+  margin: 0 0 2.6rem;
+  font-size: .8em;
+  font-style: italic;
+  color: var(--grey);
+}
+
+.song-play {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  width: 1.55rem;
+  height: 1.55rem;
+  padding-left: .12rem;
+  border: 1px solid var(--rule);
+  border-radius: 50%;
+  font-size: .56rem;
+  font-style: normal;
+  line-height: 1;
+  color: var(--grey);
+}
+
+.song-play:hover {
+  border-color: var(--grey);
+  color: var(--ink);
+}
+
+/* ─── Essay body: everything markdown can produce ──────────────────── */
+
+.essay-body {
+  max-width: 32em;
+}
+
+.essay-body h2 {
+  margin: 2.6em 0 .9em;
+  font-size: 1.12em;
+  font-weight: 400;
+  line-height: 1.3;
+}
+
+.essay-body h3 {
+  margin: 2em 0 .7em;
+  font-size: 1em;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.essay-body h4 {
+  margin: 1.6em 0 .6em;
+  font-size: .95em;
+  font-weight: 400;
+}
+
+.essay-body strong {
+  font-weight: 500;
+}
+
+.essay-body ul,
+.essay-body ol {
+  margin: 0 0 1.3em;
+  padding-left: 1.35rem;
+}
+
+.essay-body li {
+  margin-bottom: .35em;
+}
+
+.essay-body li > p {
+  margin-bottom: .5em;
+}
+
+.essay-body ul {
+  list-style: none;
+}
+
+.essay-body ul > li {
+  position: relative;
+}
+
+.essay-body ul > li::before {
+  content: "";
+  position: absolute;
+  top: .8em;
+  left: -1.35rem;
+  width: .5rem;
+  height: 1px;
+  background: var(--grey);
+}
+
+.essay-body ol > li::marker {
+  font-family: var(--mono);
+  font-size: .76em;
+  color: var(--grey);
+}
+
+.essay-body blockquote {
+  margin: 0 0 1.3em;
+  padding: 0 0 0 1.2rem;
+  border-left: 1px solid var(--trace);
+  color: var(--grey);
+}
+
+.essay-body hr {
+  margin: 2.4em 0;
+  border: 0;
+  border-top: 1px solid var(--rule);
+}
+
+.essay-body code {
+  padding: .08em .3em;
+  border-radius: 2px;
+  background: color-mix(in srgb, var(--rule) 45%, transparent);
+  font-family: var(--mono);
+  font-size: .78em;
+}
+
+.essay-body pre {
+  margin: 0 0 1.5em;
+  padding: 1rem 1.1rem;
+  overflow-x: auto;
+  border-top: 1px solid var(--rule);
+  border-bottom: 1px solid var(--rule);
+  font-family: var(--mono);
+  font-size: .74rem;
+  line-height: 1.6;
+}
+
+.essay-body pre code {
+  padding: 0;
+  background: none;
+  font-size: inherit;
+}
+
+.essay-body table {
+  display: block;
+  margin: 0 0 1.5em;
+  overflow-x: auto;
+  border-collapse: collapse;
+  font-size: .88em;
+}
+
+.essay-body th,
+.essay-body td {
+  padding: .35em 1.1em .35em 0;
+  border-bottom: 1px solid var(--rule);
+  text-align: left;
+  vertical-align: top;
+}
+
+.essay-body th {
+  font-weight: 400;
+  font-style: italic;
+  color: var(--grey);
+}
+
+.essay-body img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Figures inside the prose get more room around them than the lead photo. */
+.essay .essay-body figure.wide {
+  margin: 2.2rem 0;
+}
+
+.essay-body .katex {
+  font-size: 1.02em;
+}
+
+.essay-body .katex-display {
+  margin: 1.4em 0;
+  padding: .2em 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+.essay-body sup a,
+.essay-body .data-footnote-backref {
+  border-bottom: 0;
+}
+
+.essay-body section.footnotes {
+  margin-top: 3.4rem;
+  padding-top: 1.2rem;
+  border-top: 1px solid var(--rule);
+  font-size: .84em;
+  color: var(--grey);
+}
+
+.essay-body section.footnotes h2 {
+  margin: 0 0 .8em;
+  font-size: 1em;
+  font-style: italic;
+}
+
+/* ─── Essay ending: photo strip and back link ──────────────────────── */
+
+/* Three photos at the end, the way the journal entries end. */
+.photo-strip {
+  margin: 3.4rem 0 0;
+}
+
+.photo-strip h3 {
+  margin: 0 0 .9rem;
+  font-size: .8em;
+  font-weight: 400;
+  font-style: italic;
+  letter-spacing: .01em;
+  color: var(--grey);
+}
+
+.photo-strip-frames {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: .6rem;
+}
+
+.photo-strip figure {
+  margin: 0;
+}
+
+.photo-strip img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+}
+
+.photo-strip figcaption {
+  margin-top: .4rem;
+  font-size: .72em;
+  font-style: italic;
+  line-height: 1.4;
+  color: var(--grey);
+}
+
+.back-link {
+  margin-top: 4.2rem;
+  font-size: .86em;
+  font-style: italic;
+  color: var(--grey);
+}
+
+/* ─── Narrow screens. Keep 860px in step with Line.tsx. ────────────── */
+
+@media (max-width: 860px) {
+  body {
+    font-size: 1.1rem;
+  }
+
+  .page {
+    padding: 2.2rem 1.35rem 6rem 2.6rem;
+  }
+
+  /* The rail folds away: labels sit above their content instead. */
+  .row {
+    grid-template-columns: 1fr;
+    gap: .4rem;
+  }
+
+  .rail {
+    margin-bottom: .25rem;
+    padding-top: 0;
+    padding-left: 0;
+    text-align: left;
+  }
+
+  .rail:empty {
+    display: none;
+  }
+
+  #line {
+    width: 1.5rem;
+    opacity: .75;
+  }
+
+  nav {
+    margin-bottom: 3rem;
+  }
+
+  .section {
+    margin-bottom: 3rem;
+  }
+
+  .essay h1 {
+    font-size: 1.65em;
+  }
+
+  .essay figure.wide {
+    width: 100%;
+  }
+
+  .home-photo {
+    max-width: none;
+  }
+
+  .photo-strip-frames {
+    grid-template-columns: repeat(2, 1fr);
+  }
 }

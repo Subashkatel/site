@@ -1,44 +1,46 @@
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2Fleerob%2Fsite)
+# subashkatel.com
 
-# site
+Next.js, plain markdown, deployed on Vercel.
 
-- **Framework**: [Next.js](https://nextjs.org/)
-- **Database**: [Postgres](https://vercel.com/postgres)
-- **Deployment**: [Vercel](https://vercel.com)
-- **Styling**: [Tailwind CSS](https://tailwindcss.com)
-- **Analytics**: [Vercel Analytics](https://vercel.com/analytics)
-
-## Running Locally
-
-This application requires Node.js v18.17+.
-
-```bash
-git clone https://github.com/leerob/site.git
-cd site
-bun install
-bun run delete # Remove all of my notes
-bun dev
-or
-npm run dev
+```
+npm install
+npm run dev      # http://localhost:3000, drafts included
+npm run build    # what Vercel runs; drafts excluded
 ```
 
-Optional: Create a `.env.local` file with your `POSTGRES_URL` environment variable to store redirects.
+## Writing
 
-## Database Schema
+Posts are markdown files. The file name is the URL: `content/writing/my-post.md` becomes `/writing/my-post`.
 
-```sql
-CREATE TABLE redirects (
-  id SERIAL PRIMARY KEY,
-  source VARCHAR(255) NOT NULL,
-  destination VARCHAR(255) NOT NULL,
-  permanent BOOLEAN NOT NULL
-);
-```
+- `content/writing/` is live. Everything here gets published.
+- `content/drafts/` is private. Git ignores it, so nothing here reaches GitHub or Vercel. Drafts show up under `npm run dev`, marked as drafts.
 
-## License
+To publish, move the file from `drafts/` to `writing/`.
 
-1. You are free to use this code as inspiration.
-2. Please do not copy it directly.
-3. Crediting the author is appreciated.
+`content/TEMPLATE.md` lists every frontmatter field. Only `title` and `date` are required. The rest (deck, updated, image, caption, song, strip) are optional. Put a post's photos in `public/writing/<slug>/`.
 
-Please remove all of my personal information by running `bun run delete`.
+Math is KaTeX: `$inline$` and `$$display$$`. An image on its own line becomes a figure, and its quoted title becomes the caption.
+
+## Where things live
+
+| What | Where |
+| --- | --- |
+| Home, work, papers copy | `app/page.tsx`, `app/work/page.tsx`, `app/papers/page.tsx` |
+| Paper list | `lib/papers.ts` |
+| Email, links, CV path | `lib/site.ts` |
+| Reading posts, drafts, word counts | `lib/posts.ts` |
+| Markdown, math and figures | `lib/markdown.ts` |
+| Date formatting (2026.09) | `lib/dates.ts` |
+| CV | `public/cv/subash_cv.pdf` (also served at `/cv`) |
+| Home photo | `public/photos/central-park.jpg` |
+| Colours, type, layout | `app/globals.css` |
+
+## The line
+
+Three files, one job each:
+
+- `lib/line/pen.ts`: the physics. A delay line and an underdamped spring. Every tunable number is a named constant at the top.
+- `lib/line/drawTrace.ts`: draws the pen's history onto the canvas.
+- `app/components/Line.tsx`: connects them to the page. It handles pointer and scroll events, finds the name in the nav, runs the 60Hz clock, and rests on essays.
+
+The line hangs from whichever element has `data-line-anchor`, currently the name in `app/components/Nav.tsx`. The 860px breakpoint appears in both `Line.tsx` and `globals.css`, so change them together.

@@ -1,24 +1,18 @@
-import { blogPosts } from './data/blogPosts';
+import type { MetadataRoute } from 'next';
+import { getPublishedPosts } from '@/lib/posts';
+import { site } from '@/lib/site';
 
-export default async function sitemap() {
-  const routes = [
-    '',
-    '/writing',
-    '/publications',
-    '/resources',
-    '/credits',
-  ].map((route) => ({
-    url: `https://subashkatel.com${route}`,
-    lastModified: new Date().toISOString(),
+const pagePaths = ['', '/work', '/papers', '/writing'];
+
+export default function sitemap(): MetadataRoute.Sitemap {
+  const pageEntries = pagePaths.map((pagePath) => ({
+    url: `${site.url}${pagePath}`,
   }));
 
-  // Add published blog posts dynamically
-  const blogRoutes = blogPosts
-    .filter((post) => post.published && !post.hidden)
-    .map((post) => ({
-      url: `https://subashkatel.com/writing/${post.slug}`,
-      lastModified: new Date().toISOString(),
-    }));
+  const postEntries = getPublishedPosts().map((post) => ({
+    url: `${site.url}/writing/${post.slug}`,
+    lastModified: post.updated ?? post.date,
+  }));
 
-  return [...routes, ...blogRoutes];
+  return [...pageEntries, ...postEntries];
 }

@@ -1,62 +1,64 @@
-import { blogPosts } from '../data/blogPosts'
+import { getPublishedPosts, type Post } from '@/lib/posts';
+import { renderMarkdown } from '@/lib/markdown';
+import { site } from '@/lib/site';
 
-export async function GET() {
-  const siteUrl = 'https://subashkatel.com'
-  const author = {
-    name: 'Subash Katel',
-    email: 'skatel at princeton.edu',
-  }
+/* Built once at deploy time, like the pages. */
+export const dynamic = 'force-static';
 
-  // Filter to only published posts and sort by date (newest first)
-  const publishedPosts = blogPosts
-    .filter(post => post.published)
-    .sort((a, b) => {
-      if (!a.date || !b.date) return 0
-      return new Date(b.date).getTime() - new Date(a.date).getTime()
-    })
-
-  const rssFeed = `<?xml version="1.0" encoding="UTF-8" ?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Subash Katel - Blog</title>
-    <link>${siteUrl}</link>
-    <description>Blog posts about computer architecture, quantum computing, and research</description>
-    <language>en-us</language>
-    <atom:link href="${siteUrl}/feed.xml" rel="self" type="application/rss+xml" />
-    <lastBuildDate>${new Date().toUTCString()}</lastBuildDate>
-    ${publishedPosts
-      .map(
-        post => `
-    <item>
-      <title>${escapeXml(post.title)}</title>
-      <link>${siteUrl}/writing/${post.slug}</link>
-      <description>${escapeXml(post.description)}</description>
-      <pubDate>${post.date ? new Date(post.date).toUTCString() : new Date().toUTCString()}</pubDate>
-      <guid isPermaLink="true">${siteUrl}/writing/${post.slug}</guid>
-      <author>${author.email} (${author.name})</author>
-    </item>`
-      )
-      .join('')}
-  </channel>
-</rss>`
-
-  return new Response(rssFeed, {
-    headers: {
-      'Content-Type': 'application/xml; charset=utf-8',
-      'Cache-Control': 'public, max-age=3600, s-maxage=3600',
-    },
-  })
+function escapeXml(text: string): string {
+  return text
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;');
 }
 
-function escapeXml(unsafe: string): string {
-  return unsafe.replace(/[<>&'"]/g, (c) => {
-    switch (c) {
-      case '<': return '&lt;'
-      case '>': return '&gt;'
-      case '&': return '&amp;'
-      case "'": return '&apos;'
-      case '"': return '&quot;'
-      default: return c
-    }
-  })
+/* A literal "]]>" inside the HTML would end the CDATA section early, so it is split across two sections. */
+function wrapInCdata(html: string): string {
+  const safeHtml = html.replaceAll(']]>', ']]]]><![CDATA[>');
+  return `<![CDATA[${safeHtml}]]>`;
+}
+
+async function renderFeedItem(post: Post): Promise<string> {
+  const postUrl = `${site.url}/writing/${post.slug}`;
+  const bodyHtml = await renderMarkdown(post.markdown);
+
+  const lines = [
+    '<item>',
+    `<title>${escapeXml(post.title)}</title>`,
+    `<link>${postUrl}</link>`,
+    `<guid>${postUrl}</guid>`,
+  ];
+  if (post.date) {
+    const publishedDate = new Date(post.date).toUTCString();
+    lines.push(`<pubDate>${publishedDate}</pubDate>`);
+  }
+  if (post.deck) {
+    lines.push(`<description>${escapeXml(post.deck)}</description>`);
+  }
+  lines.push(`<content:encoded>${wrapInCdata(bodyHtml)}</content:encoded>`);
+  lines.push('</item>');
+  return lines.join('\n');
+}
+
+export async function GET() {
+  const posts = getPublishedPosts();
+  const items = await Promise.all(posts.map(renderFeedItem));
+
+  const feed = [
+    '<?xml version="1.0" encoding="UTF-8"?>',
+    '<rss version="2.0" xmlns:content="http://purl.org/rss/1.0/modules/content/">',
+    '<channel>',
+    `<title>${site.name}</title>`,
+    `<link>${site.url}/writing</link>`,
+    `<description>Writing by ${site.name}</description>`,
+    '<language>en</language>',
+    ...items,
+    '</channel>',
+    '</rss>',
+  ].join('\n');
+
+  return new Response(feed, {
+    headers: { 'Content-Type': 'application/rss+xml; charset=utf-8' },
+  });
 }

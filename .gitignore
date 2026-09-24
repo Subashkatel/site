@@ -40,8 +40,12 @@ next-env.d.ts
 *.ipynb
 .ipynb_checkpoints/
 
-# Auto-generated blog post list
-/app/data/blogPosts.ts
 
 # Claude Code instructions (personal)
 CLAUDE.md
+
+# Private drafts: visible under `npm run dev`, never committed or deployed
+/content/drafts/
+# Photos for posts still in drafts. Remove a line when its post moves to content/writing/.
+/public/writing/another-life/
+/public/writing/two-kinds-of-late/
