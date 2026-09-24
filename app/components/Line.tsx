@@ -29,7 +29,7 @@ const OFFSET_FROM_NAME_IN_PIXELS = 10;
 /* The line starts this far below the name. */
 const GAP_BELOW_NAME_IN_PIXELS = 7;
 
-const FALLBACK_COLORS: TraceColors = { line: '#C9C4B6', pen: '#1B1A17' };
+const FALLBACK_COLORS: TraceColors = { line: '#D8D0C8', pen: '#1A1918' };
 
 function isReadingPage(pathname: string): boolean {
   return pathname.startsWith('/writing/');

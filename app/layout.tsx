@@ -59,8 +59,8 @@ export const metadata: Metadata = {
 /* Matches --paper in light and dark mode, so the browser chrome blends in. */
 export const viewport: Viewport = {
   themeColor: [
-    { media: '(prefers-color-scheme: light)', color: '#FAF8F3' },
-    { media: '(prefers-color-scheme: dark)', color: '#16161A' },
+    { media: '(prefers-color-scheme: light)', color: '#FFFFFF' },
+    { media: '(prefers-color-scheme: dark)', color: '#151413' },
   ],
 };
 

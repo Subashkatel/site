@@ -1,11 +1,11 @@
 /* ─── Colours and measurements ─────────────────────────────────────── */
 
 :root {
-  --paper: #FAF8F3;
-  --ink: #1B1A17;
-  --grey: #8B8880;
-  --rule: #E2DED4;
-  --trace: #C9C4B6;
+  --paper: #FFFFFF;
+  --ink: #1A1918;
+  --grey: #6D6964;
+  --rule: #EAE6E1;
+  --trace: #D8D0C8;
 
   --rail-width: 8.5rem;
   --gutter: 3rem;
@@ -21,20 +21,20 @@
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --paper: #16161A;
-    --ink: #E6E3DA;
-    --grey: #84817A;
-    --rule: #2B2B2E;
-    --trace: #3A3A3E;
+    --paper: #151413;
+    --ink: #EDE9E4;
+    --grey: #908A84;
+    --rule: #2B2826;
+    --trace: #3C3733;
   }
 }
 
 :root[data-theme="dark"] {
-  --paper: #16161A;
-  --ink: #E6E3DA;
-  --grey: #84817A;
-  --rule: #2B2B2E;
-  --trace: #3A3A3E;
+  --paper: #151413;
+  --ink: #EDE9E4;
+  --grey: #908A84;
+  --rule: #2B2826;
+  --trace: #3C3733;
 }
 
 /* ─── Base ─────────────────────────────────────────────────────────── */
