@@ -41,8 +41,9 @@ next-env.d.ts
 .ipynb_checkpoints/
 
 
-# Claude Code instructions (personal)
+# Agent instructions (personal; `next dev` regenerates AGENTS.md)
 CLAUDE.md
+AGENTS.md
 
 # Private drafts: visible under `npm run dev`, never committed or deployed
 /content/drafts/
