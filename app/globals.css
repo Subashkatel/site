@@ -10,6 +10,8 @@
   --rail-width: 8.5rem;
   --gutter: 3rem;
   --column-width: 33em;
+  --page-width: calc(var(--rail-width) + var(--gutter) + var(--column-width) + 7rem);
+  --page-side-padding: 2rem;
 
   --serif: var(--font-serif), 'Iowan Old Style', Georgia, serif;
   --mono: var(--font-mono), ui-monospace, Menlo, monospace;
@@ -88,9 +90,9 @@ a:focus-visible {
 /* ─── Page frame: a left rail and a text column ────────────────────── */
 
 .page {
-  max-width: calc(var(--rail-width) + var(--gutter) + var(--column-width) + 7rem);
+  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 3.2rem 2rem 12rem;
+  padding: 3.2rem var(--page-side-padding) 12rem;
 }
 
 .row {
@@ -178,6 +180,11 @@ nav a {
   color: var(--grey);
 }
 
+/* inline-block so a narrow screen can wrap the nav between items. */
+nav > * {
+  display: inline-block;
+}
+
 nav a:hover,
 nav a.current {
   color: var(--ink);
@@ -252,7 +259,9 @@ nav .separator {
   color: var(--grey);
 }
 
+/* inline-block so the links can wrap onto separate lines on a small phone. */
 .contact a {
+  display: inline-block;
   margin-right: 1.1rem;
 }
 
@@ -393,9 +402,15 @@ nav .separator {
   height: 1.6rem;
 }
 
-/* Figures run past the text column on the right, never left into the rail. */
+/*
+  Figures run past the text column on the right, never left into the rail,
+  and stop a page's padding short of the window's edge. The third term is
+  the room from the column's left edge to there: the window, less the
+  margin that centres the page, the page's padding, the rail and the gutter.
+*/
 .essay figure.wide {
-  width: min(41em, calc(100% + 8rem));
+  --column-left-edge: calc(max(0px, (100vw - var(--page-width)) / 2) + var(--page-side-padding) + var(--rail-width) + var(--gutter));
+  width: min(41em, calc(100% + 8rem), calc(100vw - var(--column-left-edge) - var(--page-side-padding)));
   max-width: none;
   margin: 0 0 1rem;
 }
@@ -671,15 +686,30 @@ nav .separator {
   color: var(--grey);
 }
 
-/* ─── Narrow screens. Keep 860px in step with Line.tsx. ────────────── */
+/* ─── Narrow screens ───────────────────────────────────────────────── */
 
 @media (max-width: 860px) {
   body {
     font-size: 1.1rem;
   }
 
+  /* The wide left padding is the lane the line runs down, clear of the text. */
   .page {
-    padding: 2.2rem 1.35rem 6rem 2.6rem;
+    padding: 2.2rem 1.35rem 6rem 3.6rem;
+  }
+
+  /*
+    A hanging indent: the name sits out in the margin, above the line,
+    the way it sits above the rail on wide screens. If the nav wraps,
+    the next row starts at the text's edge instead of across the line.
+  */
+  nav {
+    text-indent: -2.6rem;
+  }
+
+  /* The indent is inherited, and applies to the nav's lines, not inside each item. */
+  nav > * {
+    text-indent: 0;
   }
 
   /* The rail folds away: labels sit above their content instead. */
@@ -700,7 +730,7 @@ nav .separator {
   }
 
   #line {
-    width: 1.5rem;
+    width: 1.25rem;
     opacity: .75;
   }
 

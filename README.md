@@ -43,4 +43,4 @@ Three files, one job each:
 - `lib/line/drawTrace.ts`: draws the pen's history onto the canvas.
 - `app/components/Line.tsx`: connects them to the page. It handles pointer and scroll events, finds the name in the nav, runs the 60Hz clock, and rests on essays.
 
-The line hangs from whichever element has `data-line-anchor`, currently the name in `app/components/Nav.tsx`. The 860px breakpoint appears in both `Line.tsx` and `globals.css`, so change them together.
+The line hangs from whichever element has `data-line-anchor`, currently the name in `app/components/Nav.tsx`, at every screen width. On narrow screens `globals.css` moves the name out into the left padding, so the line runs down the margin instead of through the text.

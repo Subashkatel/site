@@ -29,10 +29,6 @@ const OFFSET_FROM_NAME_IN_PIXELS = 10;
 /* The line starts this far below the name. */
 const GAP_BELOW_NAME_IN_PIXELS = 7;
 
-/* Must match the breakpoint in globals.css. On narrow screens the strip hugs the left edge. */
-const NARROW_SCREEN_QUERY = '(max-width: 860px)';
-const LEFT_EDGE_ON_NARROW_SCREENS_IN_PIXELS = 2;
-
 const FALLBACK_COLORS: TraceColors = { line: '#C9C4B6', pen: '#1B1A17' };
 
 function isReadingPage(pathname: string): boolean {
@@ -44,11 +40,8 @@ function findSiteName(): HTMLElement | null {
   return document.querySelector('[data-line-anchor]');
 }
 
-function placeStripUnderName(strip: HTMLElement, narrowScreen: MediaQueryList): void {
-  if (narrowScreen.matches) {
-    strip.style.left = `${LEFT_EDGE_ON_NARROW_SCREENS_IN_PIXELS}px`;
-    return;
-  }
+/* At every screen width. On narrow screens globals.css moves the name out to the margin to make room. */
+function placeStripUnderName(strip: HTMLElement): void {
   const siteName = findSiteName();
   if (!siteName) return;
   const nameLeftEdge = siteName.getBoundingClientRect().left;
@@ -138,7 +131,6 @@ export function Line() {
     if (!strip || !canvas || !context) return;
 
     const pen = new Pen();
-    const narrowScreen = matchMedia(NARROW_SCREEN_QUERY);
     const darkMode = matchMedia('(prefers-color-scheme: dark)');
     const prefersStillness = matchMedia('(prefers-reduced-motion: reduce)').matches;
     const listeners = new AbortController();
@@ -148,13 +140,13 @@ export function Line() {
     let canvasSize = fitCanvasToStrip(strip, canvas, context);
 
     const redraw = (): void => {
-      placeStripUnderName(strip, narrowScreen);
+      placeStripUnderName(strip);
       const area: StripArea = { ...canvasSize, topEdge: measureTopEdge() };
       drawTrace(context, pen.trace, area, colors);
     };
 
     const handleResize = (): void => {
-      placeStripUnderName(strip, narrowScreen);
+      placeStripUnderName(strip);
       canvasSize = fitCanvasToStrip(strip, canvas, context);
       redraw();
     };
